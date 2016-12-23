@@ -17,6 +17,7 @@ lib-cov
 logs
 node_modules
 npm-debug.log*
+dist
 pids
 test
 bin
