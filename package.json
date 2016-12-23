@@ -6,6 +6,10 @@
   "bugs": {
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
+  "dependencies": {
+    "exec-extra": "^2.2.4",
+    "fs-extra-async": "^2.0.1"
+  },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
     "eslint": "^3.12.2",
@@ -31,9 +35,5 @@
     "lint": "node-version-gte-4 && eslint lib/*.js || echo \"ESLint not supported\"",
     "test": "npm run lint && mocha"
   },
-  "version": "1.0.0",
-  "dependencies": {
-    "exec-extra": "^2.2.4",
-    "fs-extra-async": "^2.0.1"
-  }
+  "version": "1.1.0"
 }

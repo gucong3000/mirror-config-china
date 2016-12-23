@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 const env = require('./lib/env');
 const npm = require('./lib/npm');
 function init() {
@@ -7,8 +8,14 @@ function init() {
 	}).then(() => {
 		console.log('Done. please restart your shell.');
 	}).catch(e => {
-		if(e.code === 'EACCES') {
-			console.error('permission denied, are you root?');
+		if(e.code === 'EACCES' || /\bpermissions?\b/.test(e.message)) {
+			var message = 'permission denied, are you ';
+			if(process.platform !== 'win32') {
+				message += 'root? try:\n\tsudo mirror-config-china';
+			} else {
+				message += 'administrator?';
+			}
+			console.error(message);
 		} else {
 			console.error(e);
 		}
