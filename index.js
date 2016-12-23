@@ -8,16 +8,9 @@ function init() {
 	}).then(() => {
 		console.log('Done. please restart your shell.');
 	}).catch(e => {
-		if(e.code === 'EACCES' || /\bpermissions?\b/.test(e.message)) {
-			var message = 'permission denied, are you ';
-			if(process.platform !== 'win32') {
-				message += 'root? try:\n\tsudo mirror-config-china';
-			} else {
-				message += 'administrator?';
-			}
-			console.error(message);
-		} else {
-			console.error(e);
+		console.error(e);
+		if(e.code === 'EACCES' || /\bpermissions?\b/i.test(e.message)) {
+			console.error('Please try running this command again as root/Administrator.');
 		}
 	});
 }
