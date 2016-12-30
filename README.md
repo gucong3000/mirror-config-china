@@ -8,20 +8,22 @@ mirror-config-china
 - 支持Windows和其他操作系统
 - 自动配置各个node模块的安装源为淘宝镜像
 
-## Linux 下安装
+## 安装
+
+### Windows
+
+**管理权限下运行**：
 
 ```bash
-sudo npm i -g mirror-config-china && sudo mirror-config-china && sudo bash -c "/etc/profile.d/mirrors.sh"
-
+npm i -g mirror-config-china --registry=http://registry.npm.taobao.org && exit
 ```
-## Windows下安装
 
+### Linux
+```bash
+$ sudo npm i -g mirror-config-china --registry=http://registry.npm.taobao.org && exit
 ```
-npm i -g mirror-config-china
-```
-安好后请重启命令行窗口或者注销后重新登录
 
-## 支持下载加速的名单
+## 针对以下组件的镜像地址，将被写入环境变量和npm全局配置文件中
 
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
 - [Electron](https://www.npmjs.com/package/electron)

@@ -1,14 +1,11 @@
 {
   "author": "gucong3000",
-  "bin": {
-    "mirror-config-china": "./index.js"
-  },
   "bugs": {
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "exec-extra": "^2.2.4",
-    "fs-extra-async": "^2.0.1"
+    "fs-promise": "^1.0.0",
+    "mz": "^2.6.0"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
@@ -24,16 +21,16 @@
     "config"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "./index.js",
   "name": "mirror-config-china",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
   },
   "scripts": {
-    "install": "node .",
+    "install": "node lib/install",
     "lint": "node-version-gte-4 && eslint lib/*.js || echo \"ESLint not supported\"",
     "test": "npm run lint && mocha"
   },
-  "version": "1.3.0"
+  "version": "1.4.0"
 }
