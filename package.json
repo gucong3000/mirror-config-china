@@ -9,7 +9,7 @@
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
-    "eslint": "^3.12.2",
+    "eslint": "^3.14.1",
     "mocha": "^3.2.0",
     "node-version-check": "^2.1.1"
   },
