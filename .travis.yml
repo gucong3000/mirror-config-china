@@ -1,8 +1,10 @@
-sudo: false
+sudo: required
 language: node_js
 node_js:
   - "stable"
   - "6"
   - "4"
+install:
+    - sudo npm install
 after_success:
   - "npm run coveralls"
