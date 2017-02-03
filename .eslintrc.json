@@ -9,6 +9,13 @@
 	],
 	"root": true,
 	"rules": {
+		"arrow-spacing": [
+			"error",
+			{
+				"after": true,
+				"before": true
+			}
+		],
 		"comma-spacing": [
 			"error",
 			{
@@ -21,6 +28,13 @@
 			"tab",
 			{
 				"SwitchCase": 1
+			}
+		],
+		"keyword-spacing": [
+			"error",
+			{
+				"after": true,
+				"before": true
 			}
 		],
 		"no-console": [
@@ -53,6 +67,10 @@
 		"spaced-comment": [
 			"error",
 			"always"
+		],
+		"strict": [
+			"error",
+			"safe"
 		],
 		"valid-jsdoc": [
 			"warn",
