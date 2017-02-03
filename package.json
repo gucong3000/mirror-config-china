@@ -9,7 +9,10 @@
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
+    "cover": "^0.2.9",
+    "coveralls": "^2.11.15",
     "eslint": "^3.12.2",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "node-version-check": "^2.1.1"
   },
@@ -28,9 +31,11 @@
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
   },
   "scripts": {
+    "coveralls": "npm run test-cov && coveralls < coverage/lcov.info",
     "install": "node lib/install",
     "lint": "node-version-gte-4 && eslint lib/*.js || echo \"ESLint not supported\"",
-    "test": "npm run lint && mocha"
+    "test": "npm run lint && mocha",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "version": "1.4.1"
 }
