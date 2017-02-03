@@ -11,7 +11,7 @@
   "devDependencies": {
     "cover": "^0.2.9",
     "coveralls": "^2.11.15",
-    "eslint": "^3.12.2",
+    "eslint": "^3.14.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "node-version-check": "^2.1.1"
