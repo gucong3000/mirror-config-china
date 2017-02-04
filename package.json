@@ -35,7 +35,7 @@
     "install": "node lib/install",
     "lint": "node-version-gte-4 && eslint lib/*.js || echo \"ESLint not supported\"",
     "test": "npm run lint && mocha",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha"
+    "test-cov": "npm run lint && istanbul cover node_modules/mocha/bin/_mocha"
   },
   "version": "1.4.2"
 }
