@@ -10,6 +10,6 @@ install:
   - sudo npm i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
-after_success:
+script:
   - ls -l /etc/profile.d/mirrors.sh
   - npm run coveralls
