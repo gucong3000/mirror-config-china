@@ -11,5 +11,5 @@ install:
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 script:
-  - ls -l /etc/profile.d/mirrors.sh
-  - "npm run coveralls"
+  - node_modules/.bin/eslint lib/*.js
+  - node_modules/.bin/istanbul node_modules/.bin/cover node_modules/mocha/bin/_mocha
