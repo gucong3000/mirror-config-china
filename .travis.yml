@@ -12,4 +12,4 @@ install:
   - source /etc/profile.d/mirrors.sh
 script:
   - ls -l /etc/profile.d/mirrors.sh
-  - npm run coveralls
+  - "npm run coveralls"
