@@ -8,7 +8,5 @@ install:
   - sudo $(which npm) i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
-script:
-  - export PATH=./node_modules/.bin:$PATH
-  - eslint lib/*.js
-  - istanbul cover node_modules/mocha/bin/_mocha
+after_success:
+  - npm run coveralls
