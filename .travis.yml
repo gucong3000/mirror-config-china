@@ -1,5 +1,3 @@
-os:
-  - osx
 sudo: required
 language: node_js
 node_js:
@@ -11,5 +9,5 @@ install:
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 script:
-  - node_modules/.bin/eslint lib/*.js
-  - node_modules/.bin/istanbul node_modules/.bin/cover node_modules/mocha/bin/_mocha
+  - eslint lib/*.js
+  - istanbul cover node_modules/mocha/bin/_mocha
