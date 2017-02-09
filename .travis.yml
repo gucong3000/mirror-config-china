@@ -1,5 +1,4 @@
 os:
-  - linux
   - osx
 sudo: required
 language: node_js
@@ -8,6 +7,9 @@ node_js:
   - "6"
   - "4"
 install:
-  - sudo npm install
+  - sudo npm i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
+  - sudo chmod 644 /etc/profile.d/mirrors.sh
+  - source /etc/profile.d/mirrors.sh
 after_success:
-  - "npm run coveralls"
+  - ls -l /etc/profile.d/mirrors.sh
+  - npm run coveralls
