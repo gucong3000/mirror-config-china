@@ -5,11 +5,7 @@ node_js:
   - "6"
   - "4"
 install:
-  - sudo ln -s /usr/local/bin/node /usr/bin/node
-  - sudo ln -s /usr/local/lib/node /usr/lib/node
-  - sudo ln -s /usr/local/bin/npm /usr/bin/npm
-  - sudo ln -s /usr/local/bin/node-waf /usr/bin/node-waf
-  - sudo npm i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
+  - sudo $(which npm) i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 script:

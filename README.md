@@ -2,7 +2,7 @@ mirror-config-china
 ===========
 
 [![NPM version](https://img.shields.io/npm/v/mirror-config-china.svg?style=flat-square)](https://www.npmjs.com/package/mirror-config-china)
-[![Travis](https://img.shields.io/travis/gucong3000/mirror-config-china.svg?&label=OS%20X)](https://travis-ci.org/gucong3000/mirror-config-china)
+[![Travis](https://img.shields.io/travis/gucong3000/mirror-config-china.svg?&label=Linux)](https://travis-ci.org/gucong3000/mirror-config-china)
 [![AppVeyor](https://img.shields.io/appveyor/ci/gucong3000/mirror-config-china.svg?&label=Windows)](https://ci.appveyor.com/project/gucong3000/mirror-config-china)
 [![Coverage Status](https://img.shields.io/coveralls/gucong3000/mirror-config-china.svg)](https://coveralls.io/r/gucong3000/mirror-config-china)
 
