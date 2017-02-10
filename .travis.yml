@@ -5,8 +5,8 @@ node_js:
   - "6"
   - "4"
 install:
-  - npm i
-  - chmod 644 /etc/profile.d/mirrors.sh
+  - sudo $(which npm) i
+  - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 after_success:
   - npm run coveralls
