@@ -1,12 +1,12 @@
-sudo: required
+sudo: true
 language: node_js
 node_js:
   - "stable"
   - "6"
   - "4"
 install:
-  - sudo $(which npm) i --unsafe-perm --registry=http://registry.npm.taobao.org
-  - sudo chmod 644 /etc/profile.d/mirrors.sh
+  - npm i
+  - chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 after_success:
   - npm run coveralls
