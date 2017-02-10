@@ -5,7 +5,8 @@ node_js:
   - "6"
   - "4"
 install:
-  - sudo $(which node) $(which npm) i --unsafe-perm
+  - npm i
+  - sudo $(which node) lib/install
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 after_success:
