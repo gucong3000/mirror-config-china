@@ -1,11 +1,10 @@
 sudo: true
 language: node_js
 node_js:
-  - "stable"
   - "6"
   - "4"
 install:
-  - npm i || sudo $(which node) lib/install
+  - sudo $(which node) $(which npm) i --unsafe-perm
   - sudo chmod 644 /etc/profile.d/mirrors.sh
   - source /etc/profile.d/mirrors.sh
 after_success:
