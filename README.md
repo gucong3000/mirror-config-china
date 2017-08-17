@@ -27,6 +27,7 @@ npm config list
 - [git-win](https://www.npmjs.com/package/git-win)
 - [nodegit](https://www.npmjs.com/package/nodegit)
 - [node-gyp](https://www.npmjs.com/package/node-gyp)
+- [node-inspector](https://www.npmjs.com/package/node-inspector)
 - [node-sass](https://www.npmjs.com/package/node-sass)
 - [node-sqlite3](https://www.npmjs.com/package/node-sqlite3)
 - [nodist](https://github.com/marcelklehr/nodist)
