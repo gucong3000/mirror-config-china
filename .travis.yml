@@ -1,7 +1,7 @@
 sudo: true
 language: node_js
 node_js:
-  - "6"
+  - "stable"
   - "4"
 install:
   - sudo $(which node) $(which npm) i --unsafe-perm

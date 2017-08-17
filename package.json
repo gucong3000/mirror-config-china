@@ -1,20 +1,19 @@
 {
   "author": "gucong3000",
+  "bin": {
+    "mirror-config-china": "lib/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "fs-promise": "^2.0.0",
+    "fs-extra": "^4.0.1",
     "mz": "^2.6.0"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
-    "cover": "^0.2.9",
-    "coveralls": "^2.11.15",
-    "eslint": "^3.17.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "node-version-check": "^2.1.1"
+    "eslint": "^4.4.1",
+    "mocha": "^3.5.0"
   },
   "homepage": "https://github.com/gucong3000/mirror-config-china#readme",
   "keywords": [
@@ -31,11 +30,9 @@
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
   },
   "scripts": {
-    "coveralls": "npm run test-cov && coveralls < coverage/lcov.info",
     "install": "node lib/install",
-    "lint": "node-version-gte-4 && eslint lib/*.js || echo \"ESLint not supported\"",
-    "test": "npm run lint && mocha",
-    "test-cov": "npm run lint && istanbul cover node_modules/mocha/bin/_mocha"
+    "pretest": "eslint lib/**/*.js *.js",
+    "test": "mocha"
   },
-  "version": "1.5.0"
+  "version": "2.0.0"
 }

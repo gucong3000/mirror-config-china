@@ -4,7 +4,6 @@ mirror-config-china
 [![NPM version](https://img.shields.io/npm/v/mirror-config-china.svg?style=flat-square)](https://www.npmjs.com/package/mirror-config-china)
 [![Travis](https://img.shields.io/travis/gucong3000/mirror-config-china.svg?&label=Linux)](https://travis-ci.org/gucong3000/mirror-config-china)
 [![AppVeyor](https://img.shields.io/appveyor/ci/gucong3000/mirror-config-china.svg?&label=Windows)](https://ci.appveyor.com/project/gucong3000/mirror-config-china)
-[![Coverage Status](https://img.shields.io/coveralls/gucong3000/mirror-config-china.svg)](https://coveralls.io/r/gucong3000/mirror-config-china)
 
 为中国内地的Node.js开发者准备的镜像配置，大大提高node模块安装速度。
 
@@ -15,27 +14,19 @@ mirror-config-china
 
 ## 安装
 
-### Windows
-
-**管理权限下运行**：
-
 ```bash
-npm i -g mirror-config-china --registry=http://registry.npm.taobao.org && exit
+npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
+# 检查是否安装成功
+npm config list
 ```
 
-### Linux / OS X
-```bash
-$ sudo npm i --unsafe-perm -g mirror-config-china --registry=http://registry.npm.taobao.org
-$ sudo chmod 644 /etc/profile.d/mirrors.sh
-$ source /etc/profile.d/mirrors.sh
-```
-
-## 针对以下组件的镜像地址，将被写入环境变量和npm全局配置文件中
+## 安装成功后，针对以下组件的镜像地址，将被写入npm全局配置文件中
 
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
 - [Electron](https://www.npmjs.com/package/electron)
 - [git-win](https://www.npmjs.com/package/git-win)
-- [node-gyp](https://github.com/nodejs/node-gyp)
+- [nodegit](https://www.npmjs.com/package/nodegit)
+- [node-gyp](https://www.npmjs.com/package/node-gyp)
 - [node-sass](https://www.npmjs.com/package/node-sass)
 - [node-sqlite3](https://www.npmjs.com/package/node-sqlite3)
 - [nodist](https://github.com/marcelklehr/nodist)
@@ -45,3 +36,10 @@ $ source /etc/profile.d/mirrors.sh
 - [phantomjs](https://www.npmjs.com/package/phantomjs)
 - [selenium-standalone](https://www.npmjs.com/package/selenium-standalone)
 - [windows-build-tools](https://www.npmjs.com/package/windows-build-tools)
+
+## 为项目生成镜像配置
+
+```
+cd ~/my-project
+mirror-config-china --registry=https://registry.npm.taobao.org
+```

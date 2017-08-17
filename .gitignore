@@ -38,3 +38,5 @@ jspm_packages
 
 # Proj
 dist
+
+.npmrc
