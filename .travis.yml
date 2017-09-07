@@ -1,4 +1,7 @@
 language: node_js
+dist: trusty
 node_js:
   - "stable"
   - "4"
+after_install:
+  - source ~/.bashrc
