@@ -4,5 +4,5 @@ node_js:
   - "stable"
   - "4"
 script:
-  - source ~/.bashrc
+  - bash -c "source ~/.bashrc"
   - npm test
