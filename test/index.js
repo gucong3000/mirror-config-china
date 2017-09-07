@@ -3,7 +3,7 @@ var describe = require('mocha').describe;
 var it = require('mocha').it;
 var assert = require('assert');
 
-describe('environment variables', function() {
+describe.skip('environment variables', function() {
 	it('electron', function() {
 		assert.ok(process.env.ELECTRON_MIRROR);
 	});
