@@ -3,5 +3,6 @@ dist: trusty
 node_js:
   - "stable"
   - "4"
-after_install:
+script:
   - source ~/.bashrc
+  - npm test
