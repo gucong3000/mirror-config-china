@@ -13,7 +13,7 @@
   "description": "Mirrors in China about node.js",
   "devDependencies": {
     "eslint": "^4.4.1",
-    "mocha": "^3.5.0"
+    "mocha": "^4.0.0"
   },
   "homepage": "https://github.com/gucong3000/mirror-config-china#readme",
   "keywords": [
