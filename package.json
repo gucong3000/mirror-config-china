@@ -11,13 +11,15 @@
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
+    "codecov": "^3.0.0",
     "eslint": "^4.13.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "nyc": "^11.4.1"
   },
   "homepage": "https://github.com/gucong3000/mirror-config-china#readme",
   "keywords": [
@@ -29,6 +31,13 @@
   "license": "MIT",
   "main": "./index.js",
   "name": "mirror-config-china",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
@@ -37,6 +46,7 @@
     "preinstall": "node -e \"require('util').promisify.call\" || npm i util.promisify",
     "install": "node lib/install",
     "pretest": "eslint lib test *.js",
+    "report-coverage": "codecov",
     "test": "mocha"
   },
   "version": "2.2.0"
