@@ -29,6 +29,7 @@
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
   },
   "scripts": {
+    "preinstall": "node -e \"require('util').promisify.call\" || npm i util.promisify",
     "install": "node lib/install",
     "pretest": "eslint lib/**/*.js *.js",
     "test": "mocha"

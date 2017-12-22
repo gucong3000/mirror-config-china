@@ -2,4 +2,7 @@ language: node_js
 dist: trusty
 node_js:
   - "stable"
-  - "4"
+
+script:
+  - "source ~/.bash_profile || source ~/.bashrc || source ~/.zshrc"
+  - npm test
