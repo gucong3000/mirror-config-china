@@ -1,4 +1,4 @@
-'use strict';
+
 const assert = require('assert');
 const util = require('util');
 if (!util.promisify) {
@@ -6,9 +6,9 @@ if (!util.promisify) {
 }
 const exec = util.promisify(require('child_process').execFile);
 
-describe('environment variables', function() {
+describe('environment variables', () => {
 	before(() => {
-		if (process.platform == 'win32') {
+		if (process.platform === 'win32') {
 			return exec('REG', ['QUERY', 'HKCU\\Environment']).then(regs => {
 				regs.stdout.replace(/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm, (s, key, value) => {
 					process.env[key] = value;
@@ -17,31 +17,31 @@ describe('environment variables', function() {
 		}
 	});
 
-	it('NODEJS_ORG_MIRROR', function() {
+	it('NODEJS_ORG_MIRROR', () => {
 		assert.equal(process.env.NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
 	});
 
-	it('NVM_NODEJS_ORG_MIRROR', function() {
+	it('NVM_NODEJS_ORG_MIRROR', () => {
 		assert.equal(process.env.NVM_NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
 	});
 
-	it('IOJS_ORG_MIRROR', function() {
+	it('IOJS_ORG_MIRROR', () => {
 		assert.equal(process.env.IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
 	});
 
-	it('NVM_IOJS_ORG_MIRROR', function() {
+	it('NVM_IOJS_ORG_MIRROR', () => {
 		assert.equal(process.env.NVM_IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
 	});
 });
 
-describe('npm config', function() {
-	it('electron', function() {
+describe('npm config', () => {
+	it('electron', () => {
 		assert.equal(process.env.npm_config_electron_mirror, 'https://npm.taobao.org/mirrors/electron/');
 	});
-	it('git4win_mirror', function() {
+	it('git4win_mirror', () => {
 		assert.equal(process.env.npm_config_git4win_mirror, 'https://npm.taobao.org/mirrors/git-for-windows');
 	});
-	it('python_mirror', function() {
+	it('python_mirror', () => {
 		assert.equal(process.env.npm_config_python_mirror, 'https://npm.taobao.org/mirrors/python');
 	});
 });

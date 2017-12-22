@@ -5,10 +5,13 @@
 		"node": true
 	},
 	"extends": [
-		"eslint:recommended"
+		"standard"
 	],
 	"root": true,
 	"rules": {
+		"prefer-arrow-callback": [
+			"error"
+		],
 		"arrow-spacing": [
 			"error",
 			{
@@ -45,6 +48,9 @@
 			"off",
 			{
 			}
+		],
+		"no-tabs": [
+			"off"
 		],
 		"quotes": [
 			"error",
