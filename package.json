@@ -12,6 +12,11 @@
   "description": "Mirrors in China about node.js",
   "devDependencies": {
     "eslint": "^4.13.1",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "mocha": "^4.0.1"
   },
   "homepage": "https://github.com/gucong3000/mirror-config-china#readme",
@@ -31,7 +36,7 @@
   "scripts": {
     "preinstall": "node -e \"require('util').promisify.call\" || npm i util.promisify",
     "install": "node lib/install",
-    "pretest": "eslint lib/**/*.js *.js",
+    "pretest": "eslint lib test *.js",
     "test": "mocha"
   },
   "version": "2.2.0"
