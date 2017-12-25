@@ -32,15 +32,32 @@ describe('environment variables', () => {
 	it('NVM_IOJS_ORG_MIRROR', () => {
 		assert.equal(process.env.NVM_IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
 	});
+
+	it('NVMW_NODEJS_ORG_MIRROR', () => {
+		assert.equal(process.env.NVMW_NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
+	});
+	it('NVMW_IOJS_ORG_MIRROR', () => {
+		assert.equal(process.env.NVMW_IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+	});
+
+	it('NVMW_NPM_MIRROR', () => {
+		assert.equal(process.env.NVMW_NPM_MIRROR, 'https://npm.taobao.org/mirrors/npm');
+	});
 });
 
 describe('npm config', () => {
+	it('chromedriver', () => {
+		assert.equal(process.env.npm_config_chromedriver_cdnurl, 'https://npm.taobao.org/mirrors/chromedriver');
+	});
+
 	it('electron', () => {
 		assert.equal(process.env.npm_config_electron_mirror, 'https://npm.taobao.org/mirrors/electron/');
 	});
+
 	it('git4win_mirror', () => {
 		assert.equal(process.env.npm_config_git4win_mirror, 'https://npm.taobao.org/mirrors/git-for-windows');
 	});
+
 	it('python_mirror', () => {
 		assert.equal(process.env.npm_config_python_mirror, 'https://npm.taobao.org/mirrors/python');
 	});
