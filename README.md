@@ -21,12 +21,6 @@ npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
 npm config list
 ```
 
-## '/usr/etc/npmrc'权限不足的处理
-```
-touch $(npm config get globalconfig)
-chmod a+w -R $(npm config get globalconfig)
-```
-
 ## 安装成功后，针对以下组件的镜像地址，将被写入npm全局配置文件中
 
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
