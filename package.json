@@ -47,7 +47,8 @@
     "install": "node lib/install",
     "pretest": "eslint lib test *.js",
     "report-coverage": "codecov",
-    "test": "mocha"
+    "install-test": "npm run install && npm test",
+    "test": "mocha --no-timeouts"
   },
   "version": "2.3.1"
 }

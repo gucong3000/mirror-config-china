@@ -2,8 +2,8 @@
 const assert = require('assert');
 const path = require('path');
 const os = require('os');
-// const fs = require('fs');
 const util = require('util');
+const config = require('../lib/config.js');
 
 if (!util.promisify) {
 	util.promisify = require('util.promisify');
@@ -12,59 +12,66 @@ if (!util.promisify) {
 const exec = util.promisify(require('child_process').execFile);
 const readFile = util.promisify(require('fs').readFile);
 
-function getRegEnv (platform) {
-	const args = [
-		'QUERY',
-		'HKCU\\Environment'
-	];
+function initWinEnv () {
+	function getRegEnv (platform) {
+		const args = [
+			'QUERY',
+			'HKCU\\Environment'
+		];
 
-	if (platform) {
-		args.push('/reg:' + platform);
+		if (platform) {
+			args.push('/reg:' + platform);
+		}
+		return exec('REG', args).then(
+			regQuery => regQuery.stdout,
+			() => {}
+		);
 	}
-	return exec('REG', args).then(
-		regQuery => regQuery.stdout,
-		() => {}
+	return Promise.all([
+		getRegEnv(64),
+		getRegEnv(32),
+		getRegEnv()
+	]).then(
+		regs => regs.filter(
+			Boolean
+		).forEach(
+			regs => regs.replace(
+				/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm,
+				(s, key, value) => {
+					process.env[key] = value;
+				}
+			)
+		)
 	);
+}
+
+function initEnv () {
+	const home = os.homedir();
+	const files = [
+		'.bash_profile',
+		'.bashrc',
+		'.zshrc'
+	].map(
+		file => path.join(home, file)
+	);
+	return Promise.all(files.map(file => {
+		return readFile(file, 'utf8').then(sh => {
+			sh.replace(
+				/^export\s+(.+?)=("|')?(.+?)\2\s*$/igm,
+				(s, key, quote, value) => {
+					process.env[key] = value;
+				}
+			);
+		}, () => {});
+	}));
 }
 
 describe('environment variables', () => {
 	before(() => {
 		if (process.platform === 'win32') {
-			return Promise.all([
-				getRegEnv(64),
-				getRegEnv(32),
-				getRegEnv()
-			]).then(
-				regs => regs.filter(
-					Boolean
-				).forEach(
-					regs => regs.replace(
-						/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm,
-						(s, key, value) => {
-							process.env[key] = value;
-						}
-					)
-				)
-			);
+			return initWinEnv();
 		} else {
-			const home = os.homedir();
-			const files = [
-				'.bash_profile',
-				'.bashrc',
-				'.zshrc'
-			].map(
-				file => path.join(home, file)
-			);
-			return Promise.all(files.map(file => {
-				return readFile(file, 'utf8').then(sh => {
-					sh.replace(
-						/^export\s+(.+?)=("|')?(.+?)\2\s*$/igm,
-						(s, key, quote, value) => {
-							process.env[key] = value;
-						}
-					);
-				}, () => {});
-			}));
+			return initEnv();
 		}
 	});
 
@@ -115,5 +122,14 @@ describe('npm config', () => {
 
 	it('puppeteer', () => {
 		assert.equal(process.env.npm_config_puppeteer_download_host, 'https://npm.taobao.org/mirrors');
+	});
+});
+
+describe('get config', () => {
+	it('--registry', () => {
+		assert.equal(config(['--registry=https://r.cnpmjs.org']).registry, 'https://r.cnpmjs.org');
+	});
+	it('--disturl', () => {
+		assert.equal(config(['--disturl=https://cnpmjs.org/dist']).disturl, 'https://cnpmjs.org/dist');
 	});
 });
