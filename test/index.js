@@ -54,11 +54,15 @@ describe('npm config', () => {
 		assert.equal(process.env.npm_config_electron_mirror, 'https://npm.taobao.org/mirrors/electron/');
 	});
 
-	it('git4win_mirror', () => {
+	it('git4win', () => {
 		assert.equal(process.env.npm_config_git4win_mirror, 'https://npm.taobao.org/mirrors/git-for-windows');
 	});
 
-	it('python_mirror', () => {
+	it('python', () => {
 		assert.equal(process.env.npm_config_python_mirror, 'https://npm.taobao.org/mirrors/python');
+	});
+
+	it('puppeteer', () => {
+		assert.equal(process.env.npm_config_puppeteer_download_host, 'https://npm.taobao.org/mirrors');
 	});
 });
