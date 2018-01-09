@@ -7,6 +7,10 @@
 	"extends": [
 		"standard"
 	],
+	"parserOptions": {
+	"sourceType": "script",
+		"ecmaVersion": 2017
+	},
 	"root": true,
 	"rules": {
 		"prefer-arrow-callback": [

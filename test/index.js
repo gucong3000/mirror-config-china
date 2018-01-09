@@ -1,19 +1,70 @@
-
+'use strict';
 const assert = require('assert');
+const path = require('path');
+const os = require('os');
+// const fs = require('fs');
 const util = require('util');
+
 if (!util.promisify) {
 	util.promisify = require('util.promisify');
 }
+
 const exec = util.promisify(require('child_process').execFile);
+const readFile = util.promisify(require('fs').readFile);
+
+function getRegEnv (platform) {
+	const args = [
+		'QUERY',
+		'HKCU\\Environment'
+	];
+
+	if (platform) {
+		args.push('/reg:' + platform);
+	}
+	return exec('REG', args).then(
+		regQuery => regQuery.stdout,
+		() => {}
+	);
+}
 
 describe('environment variables', () => {
 	before(() => {
 		if (process.platform === 'win32') {
-			return exec('REG', ['QUERY', 'HKCU\\Environment']).then(regs => {
-				regs.stdout.replace(/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm, (s, key, value) => {
-					process.env[key] = value;
-				});
-			});
+			return Promise.all([
+				getRegEnv(64),
+				getRegEnv(32),
+				getRegEnv()
+			]).then(
+				regs => regs.filter(
+					Boolean
+				).forEach(
+					regs => regs.replace(
+						/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm,
+						(s, key, value) => {
+							process.env[key] = value;
+						}
+					)
+				)
+			);
+		} else {
+			const home = os.homedir();
+			const files = [
+				'.bash_profile',
+				'.bashrc',
+				'.zshrc'
+			].map(
+				file => path.join(home, file)
+			);
+			return Promise.all(files.map(file => {
+				return readFile(file, 'utf8').then(sh => {
+					sh.replace(
+						/^export\s+(.+?)=("|')?(.+?)\2\s*$/igm,
+						(s, key, quote, value) => {
+							process.env[key] = value;
+						}
+					);
+				}, () => {});
+			}));
 		}
 	});
 

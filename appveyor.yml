@@ -7,10 +7,13 @@ environment:
   matrix:
     - nodejs_version: stable
 
+platform:
+  - x64
+
 # Install scripts. (runs after repo cloning)
 install:
   # install Node.js
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version $env:platform
   # install modules
   - npm install --ignore-scripts
 
