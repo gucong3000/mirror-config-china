@@ -1,14 +1,14 @@
 language: node_js
 dist: trusty
 node_js:
-  - "stable"
+  - stable
+  - 4
 
 install:
   - npm install --ignore-scripts
 
 script:
   - nyc npm run install
-  - "source ~/.bash_profile || source ~/.bashrc || source ~/.zshrc"
   - npm test
 
 after_script:
