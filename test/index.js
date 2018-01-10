@@ -123,6 +123,10 @@ describe('npm config', () => {
 	it('puppeteer', () => {
 		assert.equal(process.env.npm_config_puppeteer_download_host, 'https://npm.taobao.org/mirrors');
 	});
+
+	it('node-inspector', () => {
+		assert.equal(process.env.npm_config_profiler_binary_host_mirror, 'https://npm.taobao.org/mirrors/node-inspector');
+	});
 });
 
 describe('get config', () => {
