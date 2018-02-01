@@ -1,12 +1,16 @@
 *.log
 *.pid
 *.seed
+*.tgz
+.circleci
 .editorconfig
+.babelrc
 .eslintrc*
 .gitignore
 .grunt
 .lock-wscript
 .node_repl_history
+.nyc_output
 .stylelintrc*
 .travis.yml
 .vscode
