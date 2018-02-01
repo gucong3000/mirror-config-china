@@ -36,9 +36,11 @@ function initWinEnv () {
 			Boolean
 		).forEach(
 			regs => regs.replace(
-				/^\s*(\w+)\s+REG_\w+\s*(.+)$/gm,
+				/^\s*(\w+)\s+REG(?:_[A-Z]+)+\s*(https?:\/\/.+?)$/gm,
 				(s, key, value) => {
-					process.env[key] = value;
+					if (!/^Path$/i.test(key)) {
+						process.env[key] = value;
+					}
 				}
 			)
 		)
@@ -57,7 +59,7 @@ function initEnv () {
 	return Promise.all(files.map(file => {
 		return readFile(file, 'utf8').then(sh => {
 			sh.replace(
-				/^export\s+(.+?)=("|')?(.+?)\2\s*$/igm,
+				/^export\s+(.+?)=("|')?(https?:\/\/.+?)\2\s*$/igm,
 				(s, key, quote, value) => {
 					process.env[key] = value;
 				}
