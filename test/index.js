@@ -118,16 +118,36 @@ describe('npm config', () => {
 		assert.equal(process.env.npm_config_git4win_mirror, 'https://npm.taobao.org/mirrors/git-for-windows');
 	});
 
-	it('python', () => {
-		assert.equal(process.env.npm_config_python_mirror, 'https://npm.taobao.org/mirrors/python');
+	it('node-inspector', () => {
+		assert.equal(process.env.npm_config_profiler_binary_host_mirror, 'https://npm.taobao.org/mirrors/node-inspector/');
+	});
+
+	it('node-sass', () => {
+		assert.equal(process.env.npm_config_sass_binary_site, 'https://npm.taobao.org/mirrors/node-sass');
+	});
+
+	it('nodegit', () => {
+		assert.equal(process.env.npm_config_nodegit_binary_host_mirror, 'https://npm.taobao.org/mirrors/nodegit/v{version}/');
+	});
+
+	it('operadriver', () => {
+		assert.equal(process.env.npm_config_operadriver_cdnurl, 'https://npm.taobao.org/mirrors/operadriver');
+	});
+
+	it('phantomjs', () => {
+		assert.equal(process.env.npm_config_phantomjs_cdnurl, 'https://npm.taobao.org/mirrors/phantomjs');
 	});
 
 	it('puppeteer', () => {
 		assert.equal(process.env.npm_config_puppeteer_download_host, 'https://npm.taobao.org/mirrors');
 	});
 
-	it('node-inspector', () => {
-		assert.equal(process.env.npm_config_profiler_binary_host_mirror, 'https://npm.taobao.org/mirrors/node-inspector');
+	it('python', () => {
+		assert.equal(process.env.npm_config_python_mirror, 'https://npm.taobao.org/mirrors/python');
+	});
+
+	it('sqlite3', () => {
+		assert.equal(process.env.npm_config_sqlite3_binary_site, 'https://npm.taobao.org/mirrors/sqlite3');
 	});
 });
 
