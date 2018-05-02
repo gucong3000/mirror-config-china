@@ -7,7 +7,7 @@
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "fs-extra": "^5.0.0"
+    "fs-extra": "^6.0.0"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
