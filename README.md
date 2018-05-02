@@ -5,6 +5,7 @@ mirror-config-china
 [![Travis](https://img.shields.io/travis/gucong3000/mirror-config-china.svg?&label=Linux)](https://travis-ci.org/gucong3000/mirror-config-china)
 [![AppVeyor](https://img.shields.io/appveyor/ci/gucong3000/mirror-config-china.svg?&label=Windows)](https://ci.appveyor.com/project/gucong3000/mirror-config-china)
 [![codecov](https://img.shields.io/codecov/c/github/gucong3000/mirror-config-china.svg)](https://codecov.io/gh/gucong3000/mirror-config-china)
+[![David](https://img.shields.io/david/gucong3000/mirror-config-china.svg)](https://david-dm.org/gucong3000/mirror-config-china)
 
 为中国内地的Node.js开发者准备的镜像配置，大大提高node模块安装速度。
 
