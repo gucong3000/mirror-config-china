@@ -1,8 +1,8 @@
 language: node_js
 dist: trusty
 node_js:
-  - stable
-  - 6
+  - "stable"
+  - "--lts"
 
 install:
   - npm install --ignore-scripts
