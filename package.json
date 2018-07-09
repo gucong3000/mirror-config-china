@@ -7,18 +7,18 @@
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "fs-extra": "^6.0.0"
+    "fs-extra": "^6.0.1"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
-    "codecov": "^3.0.1",
-    "eslint": "^5.0.0",
+    "codecov": "^3.0.4",
+    "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "nyc": "^12.0.2"
   },
   "homepage": "https://github.com/gucong3000/mirror-config-china#readme",
@@ -50,5 +50,5 @@
     "install-test": "npm run install && npm test",
     "test": "mocha --no-timeouts"
   },
-  "version": "2.5.0"
+  "version": "2.5.1"
 }
