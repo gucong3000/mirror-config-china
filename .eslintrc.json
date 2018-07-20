@@ -92,5 +92,19 @@
 				"requireReturn": false
 			}
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/test/**/*"
+			],
+			"env": {
+				"mocha": true
+			},
+			"rules": {
+				"no-unused-expressions": "off",
+				"no-template-curly-in-string": "off"
+			}
+		}
+	]
 }
