@@ -18,9 +18,31 @@ mirror-config-china
 
 ```bash
 npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
-# 检查是否安装成功
+# 查看npm配置
 npm config list
+# 查看环境变量
+source ~/.bashrc && env
 ```
+
+## 参数
+
+### `--registry=https://registry.npm.taobao.org`
+registry.npmjs.com 镜像地址
+
+### `--bin-mirrors-prefix=https://npm.taobao.org/mirrors`
+npm.taobao.org/mirrors 镜像地址，会覆盖下文中的`{mirrors}`
+
+### `--nodejs-org-mirror={mirrors}/node` (别名: `--disturl`)
+nodejs.org/dist 镜像地址
+
+### `--iojs-org-mirror={mirrors}/iojs`
+iojs.org/dist 镜像地址
+
+### `--nvmw-npm-mirror={mirrors}/npm`
+github.com/npm/npm/releases 镜像地址
+
+### 其他
+其他参数将被写入`.npmrc`文件中
 
 ## 安装成功后，针对以下组件的镜像地址，将被写入npm用户配置文件(~/.npmrc)中
 
