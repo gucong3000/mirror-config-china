@@ -7,9 +7,7 @@ const npmrc = require('../lib/npmrc');
 
 describe('npm config', () => {
 	before(() => require('../'));
-	// if (!process.env.npm_lifecycle_script) {
-	// 	return;
-	// }
+
 	it('chromedriver', () => {
 		assert.strictEqual(process.env.npm_config_chromedriver_cdnurl, 'https://npm.taobao.org/mirrors/chromedriver');
 	});
