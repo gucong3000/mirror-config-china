@@ -27,24 +27,49 @@ source ~/.bashrc && env
 ## 参数
 
 ### `--registry=https://registry.npm.taobao.org`
-registry.npmjs.com 镜像地址
+registry.npmjs.com 镜像URL
 
 ### `--bin-mirrors-prefix=https://npm.taobao.org/mirrors`
-npm.taobao.org/mirrors 镜像地址，会覆盖下文中的`{mirrors}`
+npm.taobao.org/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
 
-### `--nodejs-org-mirror={mirrors}/node` (别名: `--disturl`)
-nodejs.org/dist 镜像地址
+### `--apt-mirrors-prefix=https://mirrors.tuna.tsinghua.edu.cn`
+mirrors.tuna.tsinghua.edu.cn 镜像URL，会覆盖下文中的`{apt-mirrors}`
 
-### `--iojs-org-mirror={mirrors}/iojs`
-iojs.org/dist 镜像地址
+### `--ali-mirrors-prefix=https://mirrors.aliyun.com`
+mirrors.aliyun.com 镜像URL，会覆盖下文中的`{ali-mirrors}`
+阿里云ECS VPC或经典网络用户请分别使用`http://mirrors.cloud.aliyuncs.com`或`http://mirrors.aliyuncs.com`代替
 
-### `--nvmw-npm-mirror={mirrors}/npm`
-github.com/npm/npm/releases 镜像地址
+### `--nodejs-org-mirror={bin-mirrors}/node` (别名: `--disturl`)
+nodejs.org/dist 镜像URL
+
+### `--iojs-org-mirror={bin-mirrors}/iojs`
+iojs.org/dist 镜像URL
+
+### `--nvmw-npm-mirror={bin-mirrors}/npm`
+github.com/npm/npm/releases 镜像URL
+
+### `--apt-mirror={ali-mirrors}`
+[Debian](https://www.debian.org/mirror/list)/[Ubuntu](https://www.ubuntu.com/index_kylin) APT镜像URL
+
+### `--apt-gitlab-runner={apt-mirrors}/gitlab-runner/{release-id}`
+[GitLab Runner](https://docs.gitlab.com/runner/install/linux-repository.html#installing-the-runner) APT镜像URL
+
+### `--apt-docker-ce={ali-mirrors}/docker-ce/linux/{release-id}`
+[Docker](https://docs.docker.com/install/linux/docker-ce/debian/#install-docker-ce-1)社区版 APT镜像URL
+
+### `--apt-gitlab-ce={apt-mirrors}/gitlab-ce/{release-id}`
+[GitLab](https://about.gitlab.com/installation/)社区版 APT镜像URL
+
+### `--apt-virtualbox={apt-mirrors}/virtualbox/apt`
+[VirtualBox](https://www.virtualbox.org/) APT镜像URL
+
+### `--apt-nodesource={apt-mirrors}/nodesource/deb`
+[NodeJS](https://nodejs.org/zh-cn/download/package-manager/#linux-debian-ubuntu) APT镜像URL前缀
 
 ### 其他
 其他参数将被写入`.npmrc`文件中
 
-## 安装成功后，针对以下组件的镜像地址，将被写入npm用户配置文件(~/.npmrc)中
+## 安装成功后，针对以下组件的镜像URL，将被写入npm用户配置文件(~/.npmrc)中
 
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
 - [Electron](https://www.npmjs.com/package/electron)
@@ -63,7 +88,7 @@ github.com/npm/npm/releases 镜像地址
 - [selenium-standalone](https://www.npmjs.com/package/selenium-standalone)
 - [windows-build-tools](https://www.npmjs.com/package/windows-build-tools)
 
-## 为项目生成镜像配置
+## 为项目生成镜像配置文件
 
 ```
 cd ~/my-project

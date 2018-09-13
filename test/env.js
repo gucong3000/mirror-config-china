@@ -1,88 +1,9 @@
 'use strict';
 const assert = require('assert');
-const path = require('path');
-const util = require('util');
-const os = require('os');
 const config = require('../lib/config');
 
-if (!util.promisify) {
-	util.promisify = require('util.promisify');
-}
-
-const exec = util.promisify(require('child_process').execFile);
-const readFile = util.promisify(require('fs').readFile);
-const env = {};
-
-function initWinEnv () {
-	function getRegEnv (platform) {
-		const args = [
-			'QUERY',
-			'HKCU\\Environment'
-		];
-
-		if (platform) {
-			args.push('/reg:' + platform);
-		}
-		return exec('REG', args).then(
-			regQuery => regQuery.stdout,
-			() => {}
-		);
-	}
-	return Promise.all([
-		getRegEnv(64),
-		getRegEnv(32),
-		getRegEnv()
-	]).then(
-		regs => regs.filter(
-			Boolean
-		).forEach(
-			regs => regs.replace(
-				/^\s*(\w+)\s+REG(?:_[A-Z]+)+\s*(https?:\/\/.+?)$/gm,
-				(s, key, value) => {
-					if (!/^Path$/i.test(key)) {
-						env[key] = value;
-					}
-				}
-			)
-		)
-	);
-}
-
-function initEnvPosix () {
-	const home = os.homedir();
-	const files = [
-		'.bash_profile',
-		'.bashrc',
-		'.zshrc'
-	].map(
-		file => path.join(home, file)
-	);
-	return Promise.all(files.map(file => {
-		return readFile(file, 'utf8').then(sh => {
-			sh.replace(
-				/^export\s+(.+?)=("|')?(https?:\/\/.+?)\2\s*$/igm,
-				(s, key, quote, value) => {
-					env[key] = value;
-				}
-			);
-		}, () => {});
-	}));
-}
-
-const initEnv = process.platform === 'win32' ? initWinEnv : initEnvPosix;
-
 describe('environment variables', () => {
-	before(() => {
-		return exec(process.execPath, [
-			require.resolve('../lib/install')
-		], {
-			env: {
-				PATH: process.env.PATH
-			}
-		}).then(() => (
-			initEnv()
-		));
-	});
+	const env = config([]).env;
 
 	it('NODEJS_ORG_MIRROR', () => {
 		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
@@ -127,6 +48,11 @@ describe('environment variables', () => {
 		it('IO_MIRROR', () => {
 			assert.strictEqual(env.IO_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
 		});
+		if (process.platform === 'darwin') {
+			it('HOMEBREW_BOTTLE_DOMAIN', () => {
+				assert.strictEqual(env.HOMEBREW_BOTTLE_DOMAIN, 'https://mirrors.aliyun.com/homebrew/homebrew-bottles');
+			});
+		}
 	}
 });
 describe('config', () => {
@@ -168,6 +94,13 @@ describe('config', () => {
 		const env = opts.env;
 		assert.strictEqual(env.https_proxy, 'https://proxy.https.mock');
 		assert.strictEqual(env.http_proxy, 'https://proxy.http.mock');
+	});
+	it('--env-*', async () => {
+		const opts = await config([
+			'--env-mock-env=test.mok'
+		]);
+		const env = opts.env;
+		assert.strictEqual(env.MOCK_ENV, 'test.mok');
 	});
 	it('--*-mirror', async () => {
 		const opts = await config([
