@@ -156,18 +156,18 @@ deb http://mirror.main.mock/ubuntu/ mock-security main restricted universe multi
 		);
 	});
 
-	it('File not modified for debian /etc/apt/sources.list', async () => {
+	it('file not modified for debian /etc/apt/sources.list', async () => {
 		const oldContents = `
 # Created by mirror-config-china
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb http://mirror.main.mock/debian/ wheezy main non-free contrib
-# deb-src http://mirror.main.mock/debian/ wheezy main non-free contrib
-deb http://mirror.main.mock/debian-security/ wheezy/updates main
-# deb-src http://mirror.main.mock/debian-security/ wheezy/updates main
-deb http://mirror.main.mock/debian/ wheezy-updates main non-free contrib
-# deb-src http://mirror.main.mock/debian/ wheezy-updates main non-free contrib
-deb http://mirror.main.mock/debian/ wheezy-backports main non-free contrib
-# deb-src http://mirror.main.mock/debian/ wheezy-backports main non-free contrib
+deb http://mirror.main.mock/debian/ stretch main non-free contrib
+# deb-src http://mirror.main.mock/debian/ stretch main non-free contrib
+deb http://mirror.main.mock/debian-security/ stretch/updates main
+# deb-src http://mirror.main.mock/debian-security/ stretch/updates main
+deb http://mirror.main.mock/debian/ stretch-updates main non-free contrib
+# deb-src http://mirror.main.mock/debian/ stretch-updates main non-free contrib
+deb http://mirror.main.mock/debian/ stretch-backports main non-free contrib
+# deb-src http://mirror.main.mock/debian/ stretch-backports main non-free contrib
 # End of mirror-config-china
 		`.trim() + '\n';
 		mock({

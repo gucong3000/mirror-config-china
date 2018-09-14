@@ -7,7 +7,8 @@
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "fs-extra": "^7.0.0"
+    "fs-extra": "^7.0.0",
+    "is-elevated": "^2.0.1"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
@@ -45,12 +46,11 @@
     "url": "git+https://github.com/gucong3000/mirror-config-china.git"
   },
   "scripts": {
-    "preinstall": "node -e \"require('util').promisify.call\" || npm i util.promisify",
     "install": "node lib/install.js",
     "pretest": "eslint lib test *.js",
     "report-coverage": "codecov",
     "install-test": "npm run install && npm test",
     "test": "mocha --no-timeouts"
   },
-  "version": "2.5.1"
+  "version": "2.6.0"
 }

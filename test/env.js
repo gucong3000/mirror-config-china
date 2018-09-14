@@ -3,7 +3,11 @@ const assert = require('assert');
 const config = require('../lib/config');
 
 describe('environment variables', () => {
-	const env = config([]).env;
+	let env;
+	before(async () => {
+		const opts = await config([]);
+		env = opts.env;
+	});
 
 	it('NODEJS_ORG_MIRROR', () => {
 		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
