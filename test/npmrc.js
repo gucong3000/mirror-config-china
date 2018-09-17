@@ -54,42 +54,49 @@ describe('npm config', () => {
 });
 
 describe('get config', () => {
-	it('--registry', () => {
-		assert.strictEqual(config(['--registry=https://r.cnpmjs.org']).npmrc.registry, 'https://r.cnpmjs.org');
+	it('--registry', async () => {
+		const opts = await config(['--registry=https://r.cnpmjs.org']);
+		assert.strictEqual(opts.npmrc.registry, 'https://r.cnpmjs.org');
 	});
-	it('--disturl', () => {
-		assert.strictEqual(config(['--disturl=https://cnpmjs.org/dist']).npmrc.disturl, 'https://cnpmjs.org/dist');
+	it('--disturl', async () => {
+		const opts = await config(['--disturl=https://cnpmjs.org/dist']);
+		assert.strictEqual(opts.npmrc.disturl, 'https://cnpmjs.org/dist');
 	});
-	it('--sqlite3-binary-site', () => {
-		const npmrc = config(['--sqlite3-binary-site=https://mock.npmjs.org/sqlite3']).npmrc;
-		assert.strictEqual(npmrc['sqlite3-binary-site'], 'https://mock.npmjs.org/sqlite3');
+	it('--sqlite3-binary-site', async () => {
+		const opts = await config(['--sqlite3-binary-site=https://mock.npmjs.org/sqlite3']);
+		assert.strictEqual(opts.npmrc['sqlite3-binary-site'], 'https://mock.npmjs.org/sqlite3');
 	});
-	it('--nvm-nodejs-org-mirror', () => {
-		const npmrc = config(['--nvm-nodejs-org-mirror=https://mock.npmjs.org/dist']).npmrc;
+	it('--nvm-nodejs-org-mirror', async () => {
+		const opts = await config([['--nvm-nodejs-org-mirror=https://mock.npmjs.org/dist']]);
+		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mock.npmjs.org/dist');
 		assert.ifError(npmrc['nvm-nodejs-org-mirror']);
 	});
-	it('--nodejs-org-mirror', () => {
-		const npmrc = config(['--nodejs-org-mirror=https://mock.npmjs.org/dist']).npmrc;
+	it('--nodejs-org-mirror', async () => {
+		const opts = await config(['--nodejs-org-mirror=https://mock.npmjs.org/dist']);
+		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mock.npmjs.org/dist');
 		assert.ifError(npmrc['nodejs-org-mirror']);
 	});
-	it('--nvm-iojs-org-mirror', () => {
-		const npmrc = config(['--nvm-iojs-org-mirror=https://mock.npmjs.org/dist']).npmrc;
+	it('--nvm-iojs-org-mirror', async () => {
+		const opts = await config(['--nvm-iojs-org-mirror=https://mock.npmjs.org/dist']);
+		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://npm.taobao.org/mirrors/node');
 		assert.ifError(npmrc['nvm-iojs-org-mirror']);
 	});
-	it('--bin-mirrors-prefix', () => {
-		const npmrc = config(['--bin-mirrors-prefix=https://mirror.mock']).npmrc;
+	it('--bin-mirrors-prefix', async () => {
+		const opts = await config(['--bin-mirrors-prefix=https://mirror.mock']);
+		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mirror.mock/node');
 		assert.strictEqual(npmrc['chromedriver-cdnurl'], 'https://mirror.mock/chromedriver');
 		assert.ifError(npmrc['bin-mirrors-prefix']);
 	});
-	it('--http-proxy', () => {
-		const npmrc = config([
+	it('--http-proxy', async () => {
+		const opts = await config([
 			'--https-proxy=https://proxy.https.mock',
 			'--http-proxy=https://proxy.http.mock'
-		]).npmrc;
+		]);
+		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc['https-proxy'], 'https://proxy.https.mock');
 		assert.strictEqual(npmrc['http-proxy'], 'https://proxy.http.mock');
 	});
