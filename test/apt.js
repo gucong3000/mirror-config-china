@@ -150,8 +150,6 @@ deb http://mirror.main.mock/ubuntu/ mock-security main restricted universe multi
 # deb http://mirror.main.mock/ubuntu/ mock-proposed main restricted universe multiverse
 # deb-src http://mirror.main.mock/ubuntu/ mock-proposed main restricted universe multiverse
 # End of mirror-config-china
-
-## old sources
 			`.trim()
 		);
 	});
@@ -266,9 +264,6 @@ deb https://deb.nodesource.com/node_8.x/ mock main
 deb http://mirror.nodesource.mock/deb_8.x/ mock main
 # deb-src http://mirror.nodesource.mock/deb_8.x/ mock main
 # End of mirror-config-china
-
-deb https://deb.nodesource.com/node_8.x/ mock main
-# deb-src https://deb.nodesource.com/node_8.x/ mock main
 			`.trim()
 		);
 	});

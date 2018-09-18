@@ -9,7 +9,8 @@ describe('install', () => {
 		], {
 			encoding: 'utf8',
 			env: {
-				PATH: process.env.PATH
+				PATH: process.env.PATH,
+				APPDATA: process.env.APPDATA
 			}
 		});
 	});

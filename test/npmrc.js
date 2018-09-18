@@ -93,12 +93,12 @@ describe('get config', () => {
 	});
 	it('--http-proxy', async () => {
 		const opts = await config([
-			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock'
+			'--https-proxy=https://proxy.https.mock:1080',
+			'--http-proxy=http://proxy.http.mock:1080'
 		]);
 		const npmrc = opts.npmrc;
-		assert.strictEqual(npmrc['https-proxy'], 'https://proxy.https.mock');
-		assert.strictEqual(npmrc['http-proxy'], 'https://proxy.http.mock');
+		assert.strictEqual(npmrc['https-proxy'], 'https://proxy.https.mock:1080');
+		assert.strictEqual(npmrc['http-proxy'], 'http://proxy.http.mock:1080');
 	});
 });
 

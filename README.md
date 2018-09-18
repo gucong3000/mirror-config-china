@@ -17,11 +17,10 @@ mirror-config-china
 ## 安装
 
 ```bash
-npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
-# 查看npm配置
-npm config list
-# 查看环境变量
-source ~/.bashrc && env
+# Windows 用户无需输入`sudo`
+sudo npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
+# 重启终端，以便让环境变量生效
+exit
 ```
 
 ## 参数
@@ -65,6 +64,9 @@ github.com/npm/npm/releases 镜像URL
 
 ### `--apt-nodesource={apt-mirrors}/nodesource/deb`
 [NodeJS](https://nodejs.org/zh-cn/download/package-manager/#linux-debian-ubuntu) APT镜像URL前缀
+
+### `--https-proxy=http://127.0.0.1:1080`
+代理服务器地址配置
 
 ### 其他
 其他参数将被写入`.npmrc`文件中

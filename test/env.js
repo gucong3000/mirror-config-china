@@ -92,12 +92,12 @@ describe('config', () => {
 	});
 	it('proxy', async () => {
 		const opts = await config([
-			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock'
+			'--https-proxy=https://proxy.https.mock:1080',
+			'--http-proxy=http://proxy.http.mock:1080'
 		]);
 		const env = opts.env;
-		assert.strictEqual(env.https_proxy, 'https://proxy.https.mock');
-		assert.strictEqual(env.http_proxy, 'https://proxy.http.mock');
+		assert.strictEqual(env.https_proxy, 'https://proxy.https.mock:1080');
+		assert.strictEqual(env.http_proxy, 'http://proxy.http.mock:1080');
 	});
 	it('--env-*', async () => {
 		const opts = await config([
