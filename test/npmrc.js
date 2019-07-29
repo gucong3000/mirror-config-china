@@ -51,6 +51,10 @@ describe('npm config', () => {
 	it('sqlite3', () => {
 		assert.strictEqual(process.env.npm_config_sqlite3_binary_site, 'https://npm.taobao.org/mirrors/sqlite3');
 	});
+
+	it('sharp-libvips', () => {
+		assert.strictEqual(process.env.npm_config_sharp_dist_base_url, 'https://npm.taobao.org/mirrors/sharp-libvips/v{version}');
+	});
 });
 
 describe('get config', () => {
