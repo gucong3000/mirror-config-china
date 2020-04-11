@@ -71,6 +71,7 @@ github.com/npm/npm/releases 镜像URL
 
 ## 安装成功后，针对以下组件的镜像URL，将被写入npm用户配置文件(~/.npmrc)中
 
+- [Canvas](https://www.npmjs.com/package/canvas)
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
 - [Electron](https://www.npmjs.com/package/electron)
 - [git-win](https://www.npmjs.com/package/git-win)
