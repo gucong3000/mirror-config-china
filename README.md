@@ -87,6 +87,7 @@ github.com/npm/npm/releases 镜像URL
 - [Puppeteer](https://www.npmjs.com/package/puppeteer)
 - [selenium-standalone](https://www.npmjs.com/package/selenium-standalone)
 - [windows-build-tools](https://www.npmjs.com/package/windows-build-tools)
+- [@swc/core](https://www.npmjs.com/package/@swc/core)
 
 ## 为项目生成镜像配置文件
 
