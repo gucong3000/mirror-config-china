@@ -10,47 +10,47 @@ describe('environment variables', () => {
 	});
 
 	it('NODEJS_ORG_MIRROR', () => {
-		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
+		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/node');
 	});
 
 	it('IOJS_ORG_MIRROR', () => {
-		assert.strictEqual(env.IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+		assert.strictEqual(env.IOJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/iojs');
 	});
 
 	if (process.platform === 'win32') {
 		it('NVMW_NODEJS_ORG_MIRROR', () => {
-			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
+			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/node');
 		});
 		it('NVMW_IOJS_ORG_MIRROR', () => {
-			assert.strictEqual(env.NVMW_IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+			assert.strictEqual(env.NVMW_IOJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/iojs');
 		});
 
 		it('NVMW_NPM_MIRROR', () => {
-			assert.strictEqual(env.NVMW_NPM_MIRROR, 'https://npm.taobao.org/mirrors/npm');
+			assert.strictEqual(env.NVMW_NPM_MIRROR, 'https://npmmirror.com/mirrors/npm');
 		});
 
 		it('NODIST_NODE_MIRROR', () => {
-			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://npm.taobao.org/mirrors/node');
+			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://npmmirror.com/mirrors/node');
 		});
 
 		it('NODIST_IOJS_MIRROR', () => {
-			assert.strictEqual(env.NODIST_IOJS_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+			assert.strictEqual(env.NODIST_IOJS_MIRROR, 'https://npmmirror.com/mirrors/iojs');
 		});
 	} else {
 		it('NVM_NODEJS_ORG_MIRROR', () => {
-			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/node');
+			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/node');
 		});
 
 		it('NVM_IOJS_ORG_MIRROR', () => {
-			assert.strictEqual(env.NVM_IOJS_ORG_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+			assert.strictEqual(env.NVM_IOJS_ORG_MIRROR, 'https://npmmirror.com/mirrors/iojs');
 		});
 
 		it('NODE_MIRROR', () => {
-			assert.strictEqual(env.NODE_MIRROR, 'https://npm.taobao.org/mirrors/node');
+			assert.strictEqual(env.NODE_MIRROR, 'https://npmmirror.com/mirrors/node');
 		});
 
 		it('IO_MIRROR', () => {
-			assert.strictEqual(env.IO_MIRROR, 'https://npm.taobao.org/mirrors/iojs');
+			assert.strictEqual(env.IO_MIRROR, 'https://npmmirror.com/mirrors/iojs');
 		});
 		if (process.platform === 'darwin') {
 			it('HOMEBREW_BOTTLE_DOMAIN', () => {

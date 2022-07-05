@@ -17,7 +17,7 @@ mirror-config-china
 ## 安装
 
 ```bash
-npm i -g mirror-config-china --registry=https://registry.npm.taobao.org
+npm i -g mirror-config-china --registry=https://registry.npmmirror.com
 # 查看npm配置
 npm config list
 # 查看环境变量
@@ -26,11 +26,11 @@ source ~/.bashrc && env
 
 ## 参数
 
-### `--registry=https://registry.npm.taobao.org`
+### `--registry=https://registry.npmmirror.com`
 registry.npmjs.com 镜像URL
 
-### `--bin-mirrors-prefix=https://npm.taobao.org/mirrors`
-npm.taobao.org/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
+### `--bin-mirrors-prefix=https://npmmirror.com/mirrors`
+npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
 
 ### `--nodejs-org-mirror={bin-mirrors}/node` (别名: `--disturl`)
 nodejs.org/dist 镜像URL
@@ -67,5 +67,5 @@ github.com/npm/npm/releases 镜像URL
 
 ```
 cd ~/my-project
-mirror-config-china --registry=https://registry.npm.taobao.org
+mirror-config-china --registry=https://registry.npmmirror.com
 ```
