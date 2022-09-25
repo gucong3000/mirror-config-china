@@ -93,7 +93,7 @@ describe('config', () => {
 	it('proxy', async () => {
 		const opts = await config([
 			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock'
+			'--http-proxy=https://proxy.http.mock',
 		]);
 		const env = opts.env;
 		assert.strictEqual(env.https_proxy, 'https://proxy.https.mock');
@@ -101,7 +101,7 @@ describe('config', () => {
 	});
 	it('--env-*', async () => {
 		const opts = await config([
-			'--env-mock-env=test.mok'
+			'--env-mock-env=test.mok',
 		]);
 		const env = opts.env;
 		assert.strictEqual(env.MOCK_ENV, 'test.mok');
@@ -110,7 +110,7 @@ describe('config', () => {
 		const opts = await config([
 			'--nodejs-org-mirror=https://nodejs.mock',
 			'--nvm-iojs-mirror=https://iojs.mock',
-			'--npm-mirror=https://npmjs.mock'
+			'--npm-mirror=https://npmjs.mock',
 		]);
 		const env = opts.env;
 		assert.strictEqual(env.IOJS_ORG_MIRROR, 'https://iojs.mock');

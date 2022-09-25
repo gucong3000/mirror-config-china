@@ -19,7 +19,7 @@ describe('apt-config', () => {
 	it('args', async () => {
 		const opts = await config([
 			'--apt-mirror=http://mirror.apt-mock.com',
-			'--apt-nodesource-mirror=http://mirrors.apt-mock.com/nodesource'
+			'--apt-nodesource-mirror=http://mirrors.apt-mock.com/nodesource',
 		]);
 		const apt = opts.apt;
 		assert.strictEqual(apt.nodesource, 'http://mirrors.apt-mock.com/nodesource');
@@ -49,8 +49,8 @@ describe('apt', () => {
 			mockFs[file] = data;
 			return Promise.resolve();
 		},
-		spawn: spawn,
-		mock: true
+		spawn,
+		mock: true,
 	};
 
 	before(() => {
@@ -58,7 +58,7 @@ describe('apt', () => {
 
 		apt = proxyquire('../lib/apt', {
 			'./spawn': spawn,
-			'./sudo': sudo
+			'./sudo': sudo,
 		});
 		// process.platform = 'linux';
 	});
@@ -77,10 +77,10 @@ describe('apt', () => {
 DISTRIB_ID=mock_id
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=mock_codename
-DISTRIB_DESCRIPTION="mock description"`
+DISTRIB_DESCRIPTION="mock description"`,
 		});
 		await apt({
-			main: 'http://mirror.main.mock'
+			main: 'http://mirror.main.mock',
 		});
 		assert.ifError(mockFs['/etc/apt/sources.list']);
 	});
@@ -92,10 +92,10 @@ DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=mock
 DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
-			`
+			`,
 		});
 		await apt({
-			main: 'http://mirror.main.mock'
+			main: 'http://mirror.main.mock',
 		});
 
 		assert.strictEqual(
@@ -115,7 +115,7 @@ deb http://mirror.main.mock/ubuntu/ mock-security main restricted universe multi
 # deb http://mirror.main.mock/ubuntu/ mock-proposed main restricted universe multiverse
 # deb-src http://mirror.main.mock/ubuntu/ mock-proposed main restricted universe multiverse
 # End of mirror-config-china
-			`.trim()
+			`.trim(),
 		);
 	});
 
@@ -127,10 +127,10 @@ DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=mock
 DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
 			`,
-			'/etc/apt/sources.list': '## old sources'
+			'/etc/apt/sources.list': '## old sources',
 		});
 		await apt({
-			main: 'http://mirror.main.mock'
+			main: 'http://mirror.main.mock',
 		});
 
 		assert.strictEqual(
@@ -152,7 +152,7 @@ deb http://mirror.main.mock/ubuntu/ mock-security main restricted universe multi
 # End of mirror-config-china
 
 ## old sources
-			`.trim()
+			`.trim(),
 		);
 	});
 
@@ -181,16 +181,16 @@ HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
 BUG_REPORT_URL="https://bugs.debian.org/"
 			`,
-			'/etc/apt/sources.list': oldContents
+			'/etc/apt/sources.list': oldContents,
 		});
 		await apt({
-			main: 'http://mirror.main.mock'
+			main: 'http://mirror.main.mock',
 		});
 		assert.ifError(mockFs['/etc/apt/sources.list']);
 		const contents = await fs.readFile('/etc/apt/sources.list', 'utf8');
 		assert.strictEqual(
 			contents.trim(),
-			oldContents.trim()
+			oldContents.trim(),
 		);
 	});
 
@@ -201,10 +201,10 @@ DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=mock
 DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
-			`
+			`,
 		});
 		await apt({
-			'gitlab-runner': 'https://mirrors.gitlab-runner.mock/gitlab-runner/{release-id}'
+			'gitlab-runner': 'https://mirrors.gitlab-runner.mock/gitlab-runner/{release-id}',
 		});
 		assert.strictEqual(
 			mockFs['/etc/apt/sources.list.d/gitlab-runner.list'].trim(),
@@ -214,7 +214,7 @@ DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
 deb https://mirrors.gitlab-runner.mock/gitlab-runner/ubuntu/ mock main
 # deb-src https://mirrors.gitlab-runner.mock/gitlab-runner/ubuntu/ mock main
 # End of mirror-config-china
-			`.trim()
+			`.trim(),
 		);
 	});
 
@@ -225,10 +225,10 @@ DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=mock
 DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
-			`
+			`,
 		});
 		await apt({
-			nodesource: 'http://mirror.nodesource.mock/deb'
+			nodesource: 'http://mirror.nodesource.mock/deb',
 		});
 		assert.strictEqual(
 			mockFs['/etc/apt/sources.list.d/nodesource.list'].trim(),
@@ -238,7 +238,7 @@ DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
 deb http://mirror.nodesource.mock/deb_10.x/ mock main
 # deb-src http://mirror.nodesource.mock/deb_10.x/ mock main
 # End of mirror-config-china
-			`.trim()
+			`.trim(),
 		);
 	});
 
@@ -253,10 +253,10 @@ DISTRIB_DESCRIPTION="Ubuntu 16.04.4 LTS"
 			'/etc/apt/sources.list.d/nodesource.list': `
 deb https://deb.nodesource.com/node_8.x/ mock main
 # deb-src https://deb.nodesource.com/node_8.x/ mock main
-			`.trim() + '\n'
+			`.trim() + '\n',
 		});
 		await apt({
-			nodesource: 'http://mirror.nodesource.mock/deb'
+			nodesource: 'http://mirror.nodesource.mock/deb',
 		});
 		assert.strictEqual(
 			mockFs['/etc/apt/sources.list.d/nodesource.list'].trim(),
@@ -269,7 +269,7 @@ deb http://mirror.nodesource.mock/deb_8.x/ mock main
 
 deb https://deb.nodesource.com/node_8.x/ mock main
 # deb-src https://deb.nodesource.com/node_8.x/ mock main
-			`.trim()
+			`.trim(),
 		);
 	});
 });
