@@ -24,5 +24,5 @@ jobs:
     - name: Build
       run: |
         npm install --ignore-scripts
-        node_modules/.bin/nyc npm run install-test
+        npx nyc npm run install-test
         npm run report-coverage
