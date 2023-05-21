@@ -60,5 +60,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# IDE, editor
+.idea
+.vscode
+
 
 # End of https://www.gitignore.io/api/node
