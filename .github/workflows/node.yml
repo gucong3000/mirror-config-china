@@ -14,17 +14,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [lts/*, current]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js lts
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: lts/*
+
+    - name: Show apt config
+      run: |
+        cat /etc/apt/sources.list
+        cat /etc/apt/sources.list.d/gitlab.list
+        cat /etc/apt/sources.list.d/nodesource.list
+        cat /etc/apt/sources.list.d/docker.list
+        cat /etc/apt/sources.list.d/vbox.list
 
     - name: Build
       run: |
