@@ -1,4 +1,4 @@
-'use strict';
+
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs-extra');
@@ -94,7 +94,7 @@ describe('get config', () => {
 	it('--http-proxy', async () => {
 		const opts = await config([
 			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock',
+			'--http-proxy=https://proxy.http.mock'
 		]);
 		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc['https-proxy'], 'https://proxy.https.mock');
@@ -108,7 +108,7 @@ describe('config file', () => {
 
 	it('creat a config file', async () => {
 		await npmrc({
-			mock: 'test',
+			mock: 'test'
 		}, mockFile);
 		const content = await fs.readFile(mockFile, 'utf8');
 		assert.strictEqual(content, 'mock=test\n');
@@ -118,12 +118,12 @@ describe('config file', () => {
 			mockFile,
 			[
 				'mock1=old',
-				'mock2=old',
-			].join('\n'),
+				'mock2=old'
+			].join('\n')
 		);
 		await npmrc({
 			mock2: 'test2',
-			mock3: 'test3',
+			mock3: 'test3'
 		}, mockFile);
 		const content = await fs.readFile(mockFile, 'utf8');
 		assert.strictEqual(
@@ -133,8 +133,8 @@ describe('config file', () => {
 				'',
 				'mock2=test2',
 				'mock3=test3',
-				'',
-			].join('\n'),
+				''
+			].join('\n')
 		);
 	});
 	it('delete from config file', async () => {
@@ -142,11 +142,11 @@ describe('config file', () => {
 			mockFile,
 			[
 				'mock4=old',
-				'mock5=old',
-			].join('\n'),
+				'mock5=old'
+			].join('\n')
 		);
 		await npmrc({
-			mock4: false,
+			mock4: false
 		}, mockFile);
 		const content = await fs.readFile(mockFile, 'utf8');
 		assert.strictEqual(content, 'mock5=old\n');
@@ -156,7 +156,7 @@ describe('config file', () => {
 			'mock6=old',
 			'mock7=old',
 			'mock8=old',
-			'',
+			''
 		].join('\n');
 
 		await fs.outputFile(mockFile, oldContent);

@@ -1,116 +1,120 @@
-'use strict';
+
 module.exports = {
 	env: {
 		browser: false,
 		commonjs: true,
 		es2021: true,
-		node: true,
+		node: true
 	},
 	extends: [
-		'eslint:recommended',
+		'standard'
 	],
 	overrides: [
 		{
 			files: [
-				'**/test/**/*',
+				'**/test/**/*'
 			],
 			env: {
-				mocha: true,
+				mocha: true
 			},
 			rules: {
-			},
-		},
+			}
+		}
 	],
 	parserOptions: {
-		ecmaVersion: 'latest',
+		ecmaVersion: 'latest'
 	},
 	rules: {
 		'prefer-arrow-callback': [
-			'error',
+			'error'
 		],
 		'arrow-spacing': [
 			'error',
 			{
 				after: true,
-				before: true,
-			},
+				before: true
+			}
 		],
 		'comma-dangle': [
-			'error',
-			'always-multiline',
+			'error'
+			// 'always-multiline',
 		],
 		'comma-spacing': [
 			'error',
 			{
 				after: true,
-				before: false,
-			},
+				before: false
+			}
 		],
 		'eqeqeq': [
 			'error',
-			'smart',
+			'smart'
 		],
 		'indent': [
 			'error',
 			'tab',
 			{
-				SwitchCase: 1,
-			},
+				SwitchCase: 1
+			}
 		],
 		'keyword-spacing': [
 			'error',
 			{
 				after: true,
-				before: true,
-			},
+				before: true
+			}
 		],
 		'no-console': [
 			'off',
 			{
-			},
+			}
 		],
 		'no-tabs': [
-			'off',
+			'off'
+		],
+		'object-shorthand': [
+			'error',
+			'never'
 		],
 		'quotes': [
 			'error',
 			'single',
 			{
 				allowTemplateLiterals: true,
-				avoidEscape: true,
-			},
+				avoidEscape: true
+			}
 		],
 		'quote-props': [
 			'error',
-			'consistent-as-needed',
+			'consistent-as-needed'
 		],
 		'semi': [
 			'error',
 			'always',
 			{
-				omitLastInOneLineBlock: false,
-			},
+				omitLastInOneLineBlock: false
+			}
 		],
 		'space-before-blocks': [
 			'error',
-			'always',
+			'always'
 		],
 		'space-infix-ops': [
-			'error',
+			'error'
 		],
 		'spaced-comment': [
 			'error',
-			'always',
+			'always'
 		],
 		'strict': [
 			'error',
-			'safe',
+			'safe'
 		],
 		'valid-jsdoc': [
 			'warn',
 			{
-				requireReturn: false,
-			},
-		],
-	},
+				requireReturn: false
+			}
+		]
+	}
 };
