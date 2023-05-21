@@ -5,12 +5,12 @@ describe('install', () => {
 	it('install script', async () => {
 		await spawn([
 			process.execPath,
-			require.resolve('../lib/install')
+			require.resolve('../lib/install'),
 		], {
 			encoding: 'utf8',
 			env: {
-				PATH: process.env.PATH
-			}
+				PATH: process.env.PATH,
+			},
 		});
 	});
 });
