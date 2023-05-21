@@ -1,9 +1,9 @@
 mirror-config-china
 ===========
 
-[![NPM version](https://img.shields.io/npm/v/mirror-config-china.svg?style=flat-square)](https://www.npmjs.com/package/mirror-config-china)
-[![Travis](https://img.shields.io/travis/gucong3000/mirror-config-china.svg?&label=Linux)](https://travis-ci.org/gucong3000/mirror-config-china)
-[![AppVeyor](https://img.shields.io/appveyor/ci/gucong3000/mirror-config-china.svg?&label=Windows)](https://ci.appveyor.com/project/gucong3000/mirror-config-china)
+[![NPM version](https://img.shields.io/npm/v/mirror-config-china)](https://www.npmjs.com/package/mirror-config-china)
+[![Linux](https://img.shields.io/github/actions/workflow/status/gucong3000/mirror-config-china/node.yml?&label=Linux)](https://github.com/gucong3000/mirror-config-china/actions)
+[![Windows](https://img.shields.io/github/actions/workflow/status/gucong3000/mirror-config-china/node_win.yml?&label=Windows)](https://github.com/gucong3000/mirror-config-china/actions)
 [![codecov](https://img.shields.io/codecov/c/github/gucong3000/mirror-config-china.svg)](https://codecov.io/gh/gucong3000/mirror-config-china)
 [![David](https://img.shields.io/david/gucong3000/mirror-config-china.svg)](https://david-dm.org/gucong3000/mirror-config-china)
 
@@ -31,6 +31,10 @@ registry.npmjs.com 镜像URL
 
 ### `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
 npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
+
+### `--http-proxy=https://my.proxy.com`
+### `--https-proxy=https://my.proxy.com`
+代理配置，默认从操作系统设置中读取
 
 ### `--nodejs-org-mirror={bin-mirrors}/node` (别名: `--disturl`)
 nodejs.org/dist 镜像URL
@@ -63,6 +67,24 @@ github.com/npm/npm/releases 镜像URL
 - [selenium-standalone](https://www.npmjs.com/package/selenium-standalone)
 - [windows-build-tools](https://www.npmjs.com/package/windows-build-tools)
 - [@swc/core](https://www.npmjs.com/package/@swc/core)
+
+注：未能全部列出
+
+## 环境变量自动设置
+
+Windows 下会写入注册表:`HKLM/SYSTEM/CurrentControlSet/Control/Session Manager/Environment`
+
+其他系统会写入文件:`/etc/profile.d/node.sh`
+
+自动将当前的代理设置写入`https_proxy`、`http_proxy`
+
+[Homebrew](https://brew.sh/index_zh-cn)`HOMEBREW_BOTTLE_DOMAIN` 写入国内源（清华）
+
+Node.js IO.js 的国内版本下载地址镜像写入`NODEJS_ORG_MIRROR`、`IOJS_ORG_MIRROR` 等几个环境变量
+
+PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用 mocha、eslint 等命令行工具
+
+ (Windows 下 Path 为`node_modules\\.bin;%Path%` )
 
 ## 为项目生成镜像配置文件
 

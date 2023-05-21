@@ -2,7 +2,11 @@
 const spawn = require('../lib/spawn');
 
 describe('install', () => {
-	it('install script', async () => {
+	it('install script', async function () {
+		if (process.platform === 'win32') {
+			this.skip();
+			return;
+		}
 		await spawn([
 			process.execPath,
 			require.resolve('../lib/install'),

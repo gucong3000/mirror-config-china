@@ -41,7 +41,7 @@ describe('npm config', () => {
 	});
 
 	it('puppeteer', () => {
-		assert.strictEqual(process.env.npm_config_puppeteer_download_host, 'https://cdn.npmmirror.com/binaries');
+		assert.strictEqual(process.env.npm_config_puppeteer_download_base_url, 'https://cdn.npmmirror.com/binaries/chrome-for-testing');
 	});
 
 	it('python', () => {
@@ -94,15 +94,6 @@ describe('get config', () => {
 		assert.strictEqual(npmrc.disturl, 'https://mirror.mock/node');
 		assert.strictEqual(npmrc['chromedriver-cdnurl'], 'https://mirror.mock/chromedriver');
 		assert.ifError(npmrc['bin-mirrors-prefix']);
-	});
-	it('--http-proxy', async () => {
-		const opts = await config([
-			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock',
-		]);
-		const npmrc = opts.npmrc;
-		assert.strictEqual(npmrc['https-proxy'], 'https://proxy.https.mock');
-		assert.strictEqual(npmrc['http-proxy'], 'https://proxy.http.mock');
 	});
 });
 

@@ -11,6 +11,7 @@
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
+    "binary-mirror-config": "^2.11.0",
     "chai": "^4.3.7",
     "codecov": "^3.8.2",
     "eslint": "^8.41.0",
@@ -23,7 +24,9 @@
     "node",
     "mirros",
     "china",
-    "config"
+    "config",
+    "cnpm",
+    "npmmirror"
   ],
   "license": "MIT",
   "main": "./index.js",
@@ -45,7 +48,7 @@
     "report-coverage": "codecov",
     "nyc-install-test": "nyc npm run install-test",
     "install-test": "npm run install && npm test",
-    "test": "mocha --no-timeouts"
+    "test": "mocha --timeout 9000"
   },
-  "version": "2.6.0"
+  "version": "3.0.0"
 }
