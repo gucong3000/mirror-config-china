@@ -1,7 +1,7 @@
 
 const assert = require('assert');
 const mock = require('mock-fs');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const config = require('../lib/config');
 const proxyquire = require('proxyquire');
 
@@ -45,7 +45,7 @@ describe('apt', () => {
 	};
 
 	const sudo = {
-		outputFile: (file, data) => {
+		writeFile: (file, data) => {
 			mockFs[file] = data;
 			return Promise.resolve();
 		},
