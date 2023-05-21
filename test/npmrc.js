@@ -53,7 +53,7 @@ describe('npm config', () => {
 	});
 
 	it('swc', () => {
-		assert.strictEqual(process.env.npm_config_swc_binary_site, 'https://npm.taobao.org/mirrors/node-swc');
+		assert.strictEqual(process.env.npm_config_swc_binary_site, 'https://cdn.npmmirror.com/binaries/node-swc');
 	});
 });
 
