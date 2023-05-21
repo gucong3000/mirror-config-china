@@ -21,14 +21,6 @@ jobs:
       with:
         node-version: lts/*
 
-    - name: Show apt config
-      run: |
-        cat /etc/apt/sources.list
-        cat /etc/apt/sources.list.d/gitlab.list
-        cat /etc/apt/sources.list.d/nodesource.list
-        cat /etc/apt/sources.list.d/docker.list
-        cat /etc/apt/sources.list.d/vbox.list
-
     - name: Build
       run: |
         npm install --ignore-scripts
