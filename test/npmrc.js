@@ -1,7 +1,7 @@
-'use strict';
+
 const assert = require('assert');
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const config = require('../lib/config');
 const npmrc = require('../lib/npmrc');
 
@@ -114,7 +114,7 @@ describe('config file', () => {
 		assert.strictEqual(content, 'mock=test\n');
 	});
 	it('update a config file', async () => {
-		await fs.outputFile(
+		await fs.writeFile(
 			mockFile,
 			[
 				'mock1=old',
@@ -138,7 +138,7 @@ describe('config file', () => {
 		);
 	});
 	it('delete from config file', async () => {
-		await fs.outputFile(
+		await fs.writeFile(
 			mockFile,
 			[
 				'mock4=old',
@@ -152,14 +152,14 @@ describe('config file', () => {
 		assert.strictEqual(content, 'mock5=old\n');
 	});
 	it('no change', async () => {
-		const oldContent = 			[
+		const oldContent = [
 			'mock6=old',
 			'mock7=old',
 			'mock8=old',
 			''
 		].join('\n');
 
-		await fs.outputFile(mockFile, oldContent);
+		await fs.writeFile(mockFile, oldContent);
 		await npmrc({}, mockFile);
 		const content = await fs.readFile(mockFile, 'utf8');
 		assert.strictEqual(content, oldContent);

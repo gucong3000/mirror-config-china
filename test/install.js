@@ -1,4 +1,4 @@
-'use strict';
+
 const spawn = require('../lib/spawn');
 
 describe('install', () => {

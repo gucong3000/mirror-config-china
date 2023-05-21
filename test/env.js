@@ -1,4 +1,4 @@
-'use strict';
+
 const assert = require('assert');
 const config = require('../lib/config');
 
