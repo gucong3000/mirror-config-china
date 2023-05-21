@@ -52,7 +52,7 @@ github.com/npm/npm/releases 镜像URL
 - [node-gyp](https://www.npmjs.com/package/node-gyp)
 - [node-inspector](https://www.npmjs.com/package/node-inspector)
 - [node-sass](https://www.npmjs.com/package/node-sass)
-- [node-sqlite3](https://www.npmjs.com/package/node-sqlite3)
+- [sqlite3](https://www.npmjs.com/package/sqlite3)
 - [nodegit](https://www.npmjs.com/package/nodegit)
 - [nodist](https://github.com/marcelklehr/nodist)
 - [nvm-windows](https://github.com/coreybutler/nvm-windows)
