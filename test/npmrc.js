@@ -51,6 +51,10 @@ describe('npm config', () => {
 	it('sqlite3', () => {
 		assert.strictEqual(process.env.npm_config_sqlite3_binary_site, 'https://cdn.npmmirror.com/binaries/sqlite3');
 	});
+
+	it('swc', () => {
+		assert.strictEqual(process.env.npm_config_swc_binary_site, 'https://cdn.npmmirror.com/binaries/node-swc');
+	});
 });
 
 describe('get config', () => {
