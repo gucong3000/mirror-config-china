@@ -2,16 +2,28 @@
 module.exports = {
 	env: {
 		browser: false,
-		es6: true,
+		commonjs: true,
+		es2021: true,
 		node: true,
 	},
 	extends: [
-		'standard',
+		'eslint:recommended',
+	],
+	overrides: [
+		{
+			files: [
+				'**/test/**/*',
+			],
+			env: {
+				mocha: true,
+			},
+			rules: {
+			},
+		},
 	],
 	parserOptions: {
-		sourceType: 'script',
+		ecmaVersion: 'latest',
 	},
-	root: true,
 	rules: {
 		'prefer-arrow-callback': [
 			'error',
@@ -34,12 +46,12 @@ module.exports = {
 				before: false,
 			},
 		],
-		eqeqeq: [
+		'eqeqeq': [
 			'error',
 			'smart',
 		],
-		indent: [
-			'warn',
+		'indent': [
+			'error',
 			'tab',
 			{
 				SwitchCase: 1,
@@ -60,7 +72,7 @@ module.exports = {
 		'no-tabs': [
 			'off',
 		],
-		quotes: [
+		'quotes': [
 			'error',
 			'single',
 			{
@@ -68,7 +80,11 @@ module.exports = {
 				avoidEscape: true,
 			},
 		],
-		semi: [
+		'quote-props': [
+			'error',
+			'consistent-as-needed',
+		],
+		'semi': [
 			'error',
 			'always',
 			{
@@ -86,7 +102,7 @@ module.exports = {
 			'error',
 			'always',
 		],
-		strict: [
+		'strict': [
 			'error',
 			'safe',
 		],
@@ -97,18 +113,4 @@ module.exports = {
 			},
 		],
 	},
-	overrides: [
-		{
-			files: [
-				'**/test/**/*',
-			],
-			env: {
-				mocha: true,
-			},
-			rules: {
-				'no-unused-expressions': 'off',
-				'no-template-curly-in-string': 'off',
-			},
-		},
-	],
 };

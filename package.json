@@ -7,17 +7,12 @@
     "url": "https://github.com/gucong3000/mirror-config-china/issues"
   },
   "dependencies": {
-    "fs-extra": "^11.1.1",
     "is-elevated": "^4.0.0"
   },
   "description": "Mirrors in China about node.js",
   "devDependencies": {
     "codecov": "^3.8.2",
     "eslint": "^8.41.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^16.0.0",
-    "eslint-plugin-promise": "^6.1.1",
     "mocha": "^10.2.0",
     "mock-fs": "^5.2.0",
     "nyc": "^15.1.0",
