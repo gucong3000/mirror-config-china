@@ -9,47 +9,47 @@ describe('npm config', () => {
 	before(() => require('../'));
 
 	it('chromedriver', () => {
-		assert.strictEqual(process.env.npm_config_chromedriver_cdnurl, 'https://npmmirror.com/mirrors/chromedriver');
+		assert.strictEqual(process.env.npm_config_chromedriver_cdnurl, 'https://cdn.npmmirror.com/binaries/chromedriver');
 	});
 
 	it('electron', () => {
-		assert.strictEqual(process.env.npm_config_electron_mirror, 'https://npmmirror.com/mirrors/electron/');
+		assert.strictEqual(process.env.npm_config_electron_mirror, 'https://cdn.npmmirror.com/binaries/electron/');
 	});
 
 	it('git4win', () => {
-		assert.strictEqual(process.env.npm_config_git4win_mirror, 'https://npmmirror.com/mirrors/git-for-windows');
+		assert.strictEqual(process.env.npm_config_git4win_mirror, 'https://cdn.npmmirror.com/binaries/git-for-windows');
 	});
 
 	it('node-inspector', () => {
-		assert.strictEqual(process.env.npm_config_profiler_binary_host_mirror, 'https://npmmirror.com/mirrors/node-inspector/');
+		assert.strictEqual(process.env.npm_config_profiler_binary_host_mirror, 'https://cdn.npmmirror.com/binaries/node-inspector/');
 	});
 
 	it('node-sass', () => {
-		assert.strictEqual(process.env.npm_config_sass_binary_site, 'https://npmmirror.com/mirrors/node-sass');
+		assert.strictEqual(process.env.npm_config_sass_binary_site, 'https://cdn.npmmirror.com/binaries/node-sass');
 	});
 
 	it('nodegit', () => {
-		assert.strictEqual(process.env.npm_config_nodegit_binary_host_mirror, 'https://npmmirror.com/mirrors/nodegit/v{version}/');
+		assert.strictEqual(process.env.npm_config_nodegit_binary_host_mirror, 'https://cdn.npmmirror.com/binaries/nodegit/v{version}/');
 	});
 
 	it('operadriver', () => {
-		assert.strictEqual(process.env.npm_config_operadriver_cdnurl, 'https://npmmirror.com/mirrors/operadriver');
+		assert.strictEqual(process.env.npm_config_operadriver_cdnurl, 'https://cdn.npmmirror.com/binaries/operadriver');
 	});
 
 	it('phantomjs', () => {
-		assert.strictEqual(process.env.npm_config_phantomjs_cdnurl, 'https://npmmirror.com/mirrors/phantomjs');
+		assert.strictEqual(process.env.npm_config_phantomjs_cdnurl, 'https://cdn.npmmirror.com/binaries/phantomjs');
 	});
 
 	it('puppeteer', () => {
-		assert.strictEqual(process.env.npm_config_puppeteer_download_host, 'https://npmmirror.com/mirrors');
+		assert.strictEqual(process.env.npm_config_puppeteer_download_host, 'https://cdn.npmmirror.com/binaries');
 	});
 
 	it('python', () => {
-		assert.strictEqual(process.env.npm_config_python_mirror, 'https://npmmirror.com/mirrors/python');
+		assert.strictEqual(process.env.npm_config_python_mirror, 'https://cdn.npmmirror.com/binaries/python');
 	});
 
 	it('sqlite3', () => {
-		assert.strictEqual(process.env.npm_config_sqlite3_binary_site, 'https://npmmirror.com/mirrors/sqlite3');
+		assert.strictEqual(process.env.npm_config_sqlite3_binary_site, 'https://cdn.npmmirror.com/binaries/sqlite3');
 	});
 });
 
@@ -81,7 +81,7 @@ describe('get config', () => {
 	it('--nvm-iojs-org-mirror', async () => {
 		const opts = await config(['--nvm-iojs-org-mirror=https://mock.npmjs.org/dist']);
 		const npmrc = opts.npmrc;
-		assert.strictEqual(npmrc.disturl, 'https://npmmirror.com/mirrors/node');
+		assert.strictEqual(npmrc.disturl, 'https://cdn.npmmirror.com/binaries/node');
 		assert.ifError(npmrc['nvm-iojs-org-mirror']);
 	});
 	it('--bin-mirrors-prefix', async () => {

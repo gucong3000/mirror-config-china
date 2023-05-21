@@ -29,7 +29,7 @@ source ~/.bashrc && env
 ### `--registry=https://registry.npmmirror.com`
 registry.npmjs.com 镜像URL
 
-### `--bin-mirrors-prefix=https://npmmirror.com/mirrors`
+### `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
 npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
 
 ### `--nodejs-org-mirror={bin-mirrors}/node` (别名: `--disturl`)
