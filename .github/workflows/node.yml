@@ -25,6 +25,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install --ignore-scripts
-    - run: run nyc-install-test
-    - run: run report-coverage
+
+    - name: Build
+      run: |
+        npm install --ignore-scripts
+        npm run nyc-install-test
+        npm run report-coverage
