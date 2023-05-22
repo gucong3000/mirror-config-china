@@ -32,21 +32,25 @@ registry.npmjs.com 镜像URL
 ### `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
 npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
 
+### `--xxx-mirrors-prefix=https://some.com/mirrors`
+自定义镜像URL字面量`{xxx-mirrors}`
+
 ### `--http-proxy=https://my.proxy.com`
 ### `--https-proxy=https://my.proxy.com`
 代理配置，默认从操作系统设置中读取
 
-### `--nodejs-org-mirror={bin-mirrors}/node` (别名: `--disturl`)
-nodejs.org/dist 镜像URL
-
-### `--iojs-org-mirror={bin-mirrors}/iojs`
-iojs.org/dist 镜像URL
-
-### `--nvmw-npm-mirror={bin-mirrors}/npm`
-github.com/npm/npm/releases 镜像URL
+### `--disturl={bin-mirrors}/node` (别名: `--node-mirror`、`--nodejs-org-mirror`)
+nodejs.org/dist 镜像URL 默认值为`{bin-mirrors}/node`
 
 ### 其他
-其他参数将被写入`.npmrc`文件中
+其他参数将被写入`.npmrc`文件中，如
+
+```bash
+# 在`~/.npmrc`加入自定义设置项 canvas-binary-mirror
+mirror-config-china --ali-mirrors-prefix=https://mirrors.aliyun.com --canvas-binary-mirror={ali-mirrors}/canvas-prebuilt
+
+npm i -g mirror-config-china --canvas-binary-mirror=https://mirrors.aliyun.com/canvas-prebuilt
+```
 
 ## 安装成功后，针对以下组件的镜像URL，将被写入npm用户配置文件(~/.npmrc)中
 
@@ -80,7 +84,12 @@ Windows 下会写入注册表:`HKLM/SYSTEM/CurrentControlSet/Control/Session Man
 
 [Homebrew](https://brew.sh/index_zh-cn)`HOMEBREW_BOTTLE_DOMAIN` 写入国内源（清华）
 
-Node.js IO.js 的国内版本下载地址镜像写入`NODEJS_ORG_MIRROR`、`IOJS_ORG_MIRROR` 等几个环境变量
+Node.js IO.js 的镜像下载地址镜像写入`NVM_NODEJS_ORG_MIRROR`、`N_NODE_MIRROR` 等几个环境变量
+
+-[Node Version Manager](https://github.com/creationix/nvm)
+-[n](https://github.com/tj/n)
+-[nodist](https://github.com/marcelklehr/nodist)
+-[Node Version Manager for Windows](https://github.com/hakobera/nvmw)
 
 PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用 mocha、eslint 等命令行工具
 

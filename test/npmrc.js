@@ -82,12 +82,6 @@ describe('get config', () => {
 		assert.strictEqual(npmrc.disturl, 'https://mock.npmjs.org/dist');
 		assert.ifError(npmrc['nodejs-org-mirror']);
 	});
-	it('--nvm-iojs-org-mirror', async () => {
-		const opts = await config(['--nvm-iojs-org-mirror=https://mock.npmjs.org/dist']);
-		const npmrc = opts.npmrc;
-		assert.strictEqual(npmrc.disturl, 'https://cdn.npmmirror.com/binaries/node');
-		assert.ifError(npmrc['nvm-iojs-org-mirror']);
-	});
 	it('--bin-mirrors-prefix', async () => {
 		const opts = await config(['--bin-mirrors-prefix=https://mirror.mock']);
 		const npmrc = opts.npmrc;
