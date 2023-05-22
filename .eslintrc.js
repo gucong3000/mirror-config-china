@@ -27,13 +27,6 @@ module.exports = {
 		'prefer-arrow-callback': [
 			'error',
 		],
-		'arrow-spacing': [
-			'error',
-			{
-				after: true,
-				before: true,
-			},
-		],
 		'comma-dangle': [
 			'error',
 			'always-multiline',
@@ -73,7 +66,6 @@ module.exports = {
 		],
 		'object-shorthand': [
 			'error',
-			'never',
 		],
 		'quotes': [
 			'error',

@@ -12,7 +12,7 @@ mirror-config-china
 ## 特性
 
 - 支持Windows和其他操作系统
-- 自动配置各个node模块的安装源为淘宝镜像
+- 自动配置 npm 注册表和各个包的二进制模块的安装源为https://npmmirror.com/
 
 ## 安装
 
@@ -24,25 +24,22 @@ npm config list
 source ~/.bashrc && env
 ```
 
-## 参数
+## 主要参数
 
-### `--registry=https://registry.npmmirror.com`
-registry.npmjs.com 镜像URL
+- `--registry=https://registry.npmmirror.com`
+  registry.npmjs.com 镜像URL
+- `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
+  npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
+- `--xxx-mirrors-prefix=https://some.com/mirrors`
+  自定义镜像URL字面量`{xxx-mirrors}`
+- `--http-proxy=https://my.proxy.com`
+  代理配置，默认从操作系统设置中读取
+- `--https-proxy=https://my.proxy.com`
+  同上
+- `--disturl={bin-mirrors}/node` (别名: `--node-mirror`、`--nodejs-org-mirror`)
+ nodejs.org/dist 镜像URL前缀，默认值为`{bin-mirrors}/node`
 
-### `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
-npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
-
-### `--xxx-mirrors-prefix=https://some.com/mirrors`
-自定义镜像URL字面量`{xxx-mirrors}`
-
-### `--http-proxy=https://my.proxy.com`
-### `--https-proxy=https://my.proxy.com`
-代理配置，默认从操作系统设置中读取
-
-### `--disturl={bin-mirrors}/node` (别名: `--node-mirror`、`--nodejs-org-mirror`)
-nodejs.org/dist 镜像URL 默认值为`{bin-mirrors}/node`
-
-### 其他
+## 其他参数
 其他参数将被写入`.npmrc`文件中，如
 
 ```bash
@@ -91,7 +88,7 @@ Node.js IO.js 的镜像下载地址镜像写入`NVM_NODEJS_ORG_MIRROR`、`N_NODE
 -[nodist](https://github.com/marcelklehr/nodist)
 -[Node Version Manager for Windows](https://github.com/hakobera/nvmw)
 
-PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用 mocha、eslint 等命令行工具
+PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用`mocha`、`eslint`和本工具的命令行工具，可能需要重启终端才能生效
 
  (Windows 下 Path 为`node_modules\\.bin;%Path%` )
 
@@ -99,5 +96,13 @@ PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用 mocha�
 
 ```
 cd ~/my-project
-mirror-config-china --registry=https://registry.npmmirror.com
+mirror-config-china
+```
+
+## 未尽功能
+部分npm包可能用git命令从github下载依赖，建议配置镜像：
+```bash
+git config --global url."https://gitclone.com".insteadOf "https://github.com/"
+# 或者
+git config --global url."https://hub.fastgit.org/".insteadOf "https://github.com/"
 ```
