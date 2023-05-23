@@ -74,7 +74,7 @@ describe('根据命令行参数改变环境变量', () => {
 			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://my.mock/node');
 		} else {
 			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://my.mock/node');
-			assert.strictEqual(env.N_NODE_MIRROR, 'https://my.mock/iojs');
+			assert.strictEqual(env.N_NODE_MIRROR, 'https://my.mock/node');
 		}
 	});
 	it('--disturl=https://nodejs.mock', async () => {
