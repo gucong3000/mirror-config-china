@@ -7,12 +7,13 @@ mirror-config-china
 [![codecov](https://img.shields.io/codecov/c/github/gucong3000/mirror-config-china.svg)](https://codecov.io/gh/gucong3000/mirror-config-china)
 [![David](https://img.shields.io/david/gucong3000/mirror-config-china.svg)](https://david-dm.org/gucong3000/mirror-config-china)
 
-为中国内地的Node.js开发者准备的镜像配置，大大提高node模块安装速度。
+为中国内地的Node.js开发者准备的镜像配置，大大提高node模块安装成功率和速度。
 
 ## 特性
 
-- 支持Windows和其他操作系统
-- 自动配置 npm 注册表和各个包的二进制模块的安装源为https://npmmirror.com/
+- 自动配置 npm 注册表为国内镜像`https://registry.npmmirror.com/`
+- 自动配置 npm 包的二进制模块的安装源为`https://cdn.npmmirror.com/binaries/`
+- 自动配置 git 的 clone 镜像地址为`https://gitclone.com/github.com/`
 
 ## 安装
 
@@ -24,32 +25,57 @@ npm config list
 source ~/.bashrc && env
 ```
 
-## 主要参数
+## 命令行参数
 
 - `--registry=https://registry.npmmirror.com`
-  registry.npmjs.com 镜像URL
-- `--bin-mirrors-prefix=https://cdn.npmmirror.com/binaries`
-  npmmirror.com/mirrors 镜像URL，会覆盖下文中的`{bin-mirrors}`
-- `--xxx-mirrors-prefix=https://some.com/mirrors`
-  自定义镜像URL字面量`{xxx-mirrors}`
-- `--http-proxy=https://my.proxy.com`
-  代理配置，默认从操作系统设置中读取
-- `--https-proxy=https://my.proxy.com`
-  同上
-- `--disturl={bin-mirrors}/node` (别名: `--node-mirror`、`--nodejs-org-mirror`)
- nodejs.org/dist 镜像URL前缀，默认值为`{bin-mirrors}/node`
+  `https://registry.npmjs.org/`的镜像地址
+- `--disturl=https://cdn.npmmirror.com/binaries/node`
+  `https://nodejs.org/dist/`的镜像地址
+- `--bin-mirror-prefix=https://cdn.npmmirror.com/binaries`
+  二进制文件下载镜像站地址
 
-## 其他参数
-其他参数将被写入`.npmrc`文件中，如
+以上信息存入`.npmrc`文件
+
+### 自定义其他镜像
+
+你可以使用自定义参数，向`.npmrc`文件中添加更多内容，如
 
 ```bash
-# 在`~/.npmrc`加入自定义设置项 canvas-binary-mirror
-mirror-config-china --ali-mirrors-prefix=https://mirrors.aliyun.com --canvas-binary-mirror={ali-mirrors}/canvas-prebuilt
+# 在当前目录`./.npmrc`加入自定义设置项 canvas-binary-mirror
+mirror-config-china --my-mirror-prefix=https://mirrors.aliyun.com --canvas-binary-mirror={my-mirror}/canvas-prebuilt
 
+# 功能同上，但信息储存在家目录`~/.npmrc`
 npm i -g mirror-config-china --canvas-binary-mirror=https://mirrors.aliyun.com/canvas-prebuilt
 ```
 
-## 安装成功后，针对以下组件的镜像URL，将被写入npm用户配置文件(~/.npmrc)中
+## 环境变量设置
+
+写入位置：
+
+  - POSIX: 文件：`/etc/profile.d/node.sh`
+  - Windows: 注册表：`HKLM/SYSTEM/CurrentControlSet/Control/Session Manager/Environment`
+
+需要重启终端，环境变量才生效
+
+写入内容:
+
+  - `NODEJS_ORG_MIRROR`(通用，如[node-gyp](https://github.com/nodejs/node-gyp/))
+  - `NODE_MIRROR`(通用)
+  - `NVM_NODEJS_ORG_MIRROR`(仅 POSIX，供[Node Version Manager](https://github.com/nvm-sh/nvm/#use-a-mirror-of-node-binaries)使用)
+  - `N_NODE_MIRROR`(仅 POSIX，供[n](https://github.com/tj/n#custom-source)使用)
+  - `NVMW_NODEJS_ORG_MIRROR`(仅 Windows，供[Node Version Manager for Windows](https://github.com/hakobera/nvmw#mirror-nodejsiojsnpm-dist)使用)
+  - `NODIST_NODE_MIRROR`(仅 Windows，供[nodist](https://github.com/nullivex/nodist#settings)使用)
+
+以上环境变量的值将完全相同，并与`.npmrc`中的`disturl`保持一致
+
+  - `export PATH=node_modules/.bin:$PATH`(仅 POSIX)
+  - `setx /M Path "node_modules\.bin;%Path%"`(仅 Windows)
+
+PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用`mocha`、`eslint`和本工具的命令行工具，可能需要重启终端才能生效
+
+## 支持安装加速的 NPM 包
+
+安装或运行成功后，针对以下组件的镜像URL，将被写入npm用户配置文件(`~/.npmrc`或`./.npmrc`)中
 
 - [ChromeDriver](https://www.npmjs.com/package/chromedriver)
 - [Electron](https://www.npmjs.com/package/electron)
@@ -71,38 +97,17 @@ npm i -g mirror-config-china --canvas-binary-mirror=https://mirrors.aliyun.com/c
 
 注：未能全部列出
 
-## 环境变量自动设置
-
-Windows 下会写入注册表:`HKLM/SYSTEM/CurrentControlSet/Control/Session Manager/Environment`
-
-其他系统会写入文件:`/etc/profile.d/node.sh`
-
-自动将当前的代理设置写入`https_proxy`、`http_proxy`
-
-[Homebrew](https://brew.sh/index_zh-cn)`HOMEBREW_BOTTLE_DOMAIN` 写入国内源（清华）
-
-Node.js IO.js 的镜像下载地址镜像写入`NVM_NODEJS_ORG_MIRROR`、`N_NODE_MIRROR` 等几个环境变量
-
--[Node Version Manager](https://github.com/creationix/nvm)
--[n](https://github.com/tj/n)
--[nodist](https://github.com/marcelklehr/nodist)
--[Node Version Manager for Windows](https://github.com/hakobera/nvmw)
-
-PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用`mocha`、`eslint`和本工具的命令行工具，可能需要重启终端才能生效
-
- (Windows 下 Path 为`node_modules\\.bin;%Path%` )
-
-## 为项目生成镜像配置文件
-
-```
-cd ~/my-project
-mirror-config-china
-```
-
 ## 未尽功能
-部分npm包可能用git命令从github下载依赖，建议配置镜像：
+
+部分 npm 包可能用 git 命令从 github 下载依赖，建议配置镜像：
+
 ```bash
-git config --global url."https://gitclone.com".insteadOf "https://github.com/"
-# 或者
-git config --global url."https://hub.fastgit.org/".insteadOf "https://github.com/"
+# 关闭 https 证书检查
+git config --global protocol.https.allow always
+# 配置 github 镜像
+git config --global url."https://gitclone.com/github.com/".insteadOf "https://github.com/"
+# 查看配置文件
+cat ~/.gitconfig
 ```
+
+浏览器中 github 的加速，有待进一步开发相关功能

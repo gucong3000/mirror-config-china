@@ -1,12 +1,7 @@
-
-const spawn = require('../lib/spawn');
+import spawn from '../lib/spawn.js';
 
 describe('install', () => {
-	it('install script', async function () {
-		if (process.platform === 'win32') {
-			this.skip();
-			return;
-		}
+	it('install script', async () => {
 		await spawn([
 			process.execPath,
 			require.resolve('../lib/install'),

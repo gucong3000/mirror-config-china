@@ -1,6 +1,5 @@
-const config = require('../lib/config');
-const { before } = require('mocha');
-const { assert } = require('chai');
+import { assert } from 'chai';
+import config from '../lib/config.js';
 
 async function got (url, options = {}) {
 	const res = await fetch(url, {
@@ -51,11 +50,10 @@ describe('mirror config 中提供的url地址的可用性', () => {
 		assert.isAbove(+pkgRes.headers.get('Content-Length'), 0xFFFFFF, 'HTTP 响应头 Content-Length 异常');
 	});
 
-	it('python-mirror', async () => {
+	it('python-mirror 下载地址镜像', async () => {
 		const pkgRes = await got(
 			opts.npmrc['python-mirror'] + '/3.11.1/python-3.11.1-amd64.exe',
 		);
-		console.log(pkgRes.url);
 		assert.ok(pkgRes.ok);
 		assert.equal(pkgRes.headers.get('Content-Type'), 'application/octet-stream', 'HTTP 响应头 Content-Type 异常');
 		assert.isAbove(+pkgRes.headers.get('Content-Length'), 0xFFFFFF, 'HTTP 响应头 Content-Length 异常');

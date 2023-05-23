@@ -1,12 +1,12 @@
 
-const assert = require('assert');
-const path = require('path');
-const fs = require('fs/promises');
-const config = require('../lib/config');
-const npmrc = require('../lib/npmrc');
+import { assert } from 'chai';
+import config from '../lib/config.js';
+import npmrc from '../lib/npmrc.js';
+import path from 'node:path';
+import fs from 'node:fs/promises';
 
 describe('npm config', () => {
-	before(() => require('../'));
+	before(async () => await import('../index.js'));
 
 	it('chromedriver', () => {
 		assert.strictEqual(process.env.npm_config_chromedriver_cdnurl, 'https://cdn.npmmirror.com/binaries/chromedriver');
@@ -70,20 +70,20 @@ describe('get config', () => {
 		const opts = await config(['--sqlite3-binary-site=https://mock.npmjs.org/sqlite3']);
 		assert.strictEqual(opts.npmrc['sqlite3-binary-site'], 'https://mock.npmjs.org/sqlite3');
 	});
-	it('--nvm-nodejs-org-mirror', async () => {
-		const opts = await config([['--nvm-nodejs-org-mirror=https://mock.npmjs.org/dist']]);
+	it('--disturl', async () => {
+		const opts = await config(['--disturl=https://mock.npmjs.org/dist']);
 		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mock.npmjs.org/dist');
 		assert.ifError(npmrc['nvm-nodejs-org-mirror']);
 	});
-	it('--nodejs-org-mirror', async () => {
-		const opts = await config(['--nodejs-org-mirror=https://mock.npmjs.org/dist']);
+	it('--disturl', async () => {
+		const opts = await config(['--disturl=https://mock.npmjs.org/dist']);
 		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mock.npmjs.org/dist');
 		assert.ifError(npmrc['nodejs-org-mirror']);
 	});
 	it('--bin-mirrors-prefix', async () => {
-		const opts = await config(['--bin-mirrors-prefix=https://mirror.mock']);
+		const opts = await config(['--bin-mirror-prefix=https://mirror.mock']);
 		const npmrc = opts.npmrc;
 		assert.strictEqual(npmrc.disturl, 'https://mirror.mock/node');
 		assert.strictEqual(npmrc['chromedriver-cdnurl'], 'https://mirror.mock/chromedriver');
@@ -92,7 +92,7 @@ describe('get config', () => {
 });
 
 describe('config file', () => {
-	const mockFile = path.join(__dirname, '.npmrc');
+	const mockFile = path.join(process.cwd(), 'test', '.npmrc');
 	afterEach(() => fs.unlink(mockFile));
 
 	it('creat a config file', async () => {

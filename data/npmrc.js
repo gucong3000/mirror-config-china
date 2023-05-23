@@ -1,0 +1,58 @@
+const npmrc = {
+	'registry': 'https://registry.npmmirror.com',
+	'corepack-npm-registry': 'https://registry.npmmirror.com',
+
+	'disturl': '{bin-mirror}/node',
+
+	/* eslint no-template-curly-in-string: "off" */
+	'better-sqlite3-binary-host': '{bin-mirror}/better-sqlite3',
+	'canvas-binary-host-mirror': '{bin-mirror}/node-canvas-prebuilt/v{version}',
+	'canvas-prebuilt-binary-host-mirror': '{bin-mirror}/node-canvas-prebuilt/v{version}',
+	'chromedriver-cdnurl': '{bin-mirror}/chromedriver',
+	'couchbase-binary-host-mirror': '{bin-mirror}/couchbase/v{version}',
+	'cypress-download-path-template': '{bin-mirror}/cypress/${version}/${platform}-${arch}/cypress.zip',
+	'debug-binary-host-mirror': '{bin-mirror}/node-inspector',
+	'electron-builder-binaries-mirror': '{bin-mirror}/electron-builder-binaries/',
+	'electron-mirror': '{bin-mirror}/electron/',
+	'flow-bin-binary-host-mirror': '{bin-mirror}/flow/v',
+	'fse-binary-host-mirror': '{bin-mirror}/fsevents',
+	'fuse-bindings-binary-host-mirror': '{bin-mirror}/fuse-bindings/v{version}',
+	'git4win-mirror': '{bin-mirror}/git-for-windows',
+	'gl-binary-host-mirror': '{bin-mirror}/gl/v{version}',
+	'grpc-node-binary-host-mirror': '{bin-mirror}',
+	'hackrf-binary-host-mirror': '{bin-mirror}/hackrf/v{version}',
+	'keytar-binary-host': '{bin-mirror}/keytar',
+	'leveldown-binary-host-mirror': '{bin-mirror}/leveldown/v{version}',
+	'leveldown-hyper-binary-host-mirror': '{bin-mirror}/leveldown-hyper/v{version}',
+	'mknod-binary-host-mirror': '{bin-mirror}/mknod/v{version}',
+	'node-sqlite3-binary-host-mirror': '{bin-mirror}',
+	'node-tk5-binary-host-mirror': '{bin-mirror}/node-tk5/v{version}',
+	'nodegit-binary-host-mirror': '{bin-mirror}/nodegit/v{version}/',
+	'nwjs-urlbase': '{bin-mirror}/nwjs/v',
+	'operadriver-cdnurl': '{bin-mirror}/operadriver',
+	'phantomjs-cdnurl': '{bin-mirror}/phantomjs',
+	'playwright-download-host': '{bin-mirror}/playwright',
+	'profiler-binary-host-mirror': '{bin-mirror}/node-inspector/',
+	// https://github.com/puppeteer/puppeteer/commit/9758cae029f90908c4b5340561d9c51c26aa2f21
+	'puppeteer-download-base-url': '{bin-mirror}/chrome-for-testing',
+	'python-mirror': '{bin-mirror}/python',
+	'rabin-binary-host-mirror': '{bin-mirror}/rabin/v{version}',
+	're2-download-mirror': '{bin-mirror}/node-re2',
+	'robotjs-binary-host': '{bin-mirror}/robotjs',
+	'sass-binary-site': '{bin-mirror}/node-sass',
+	'saucectl-install-binary-mirror': '{bin-mirror}/saucectl',
+	'sentrycli-cdnurl': '{bin-mirror}/sentry-cli',
+	'sharp-binary-host': '{bin-mirror}/sharp',
+	'sharp-libvips-binary-host': '{bin-mirror}/sharp-libvips',
+	'sodium-prebuilt-binary-host-mirror': '{bin-mirror}/sodium-prebuilt/v{version}',
+	'sqlite3-binary-site': '{bin-mirror}/sqlite3',
+	'swc-binary-site': '{bin-mirror}/node-swc',
+	'utf-8-validate-binary-host-mirror': '{bin-mirror}/utf-8-validate/v{version}',
+	'utp-native-binary-host-mirror': '{bin-mirror}/utp-native/v{version}',
+	'zmq-prebuilt-binary-host-mirror': '{bin-mirror}/zmq-prebuilt/v{version}',
+};
+
+export {
+	npmrc,
+};
+export default npmrc;

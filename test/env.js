@@ -1,8 +1,8 @@
 
-const assert = require('assert');
-const config = require('../lib/config');
+import { assert } from 'chai';
+import config from '../lib/config.js';
 
-describe('environment variables', () => {
+describe('默认环境变量', () => {
 	let env;
 	before(async () => {
 		const opts = await config([]);
@@ -25,69 +25,61 @@ describe('environment variables', () => {
 		it('NODIST_NODE_MIRROR', () => {
 			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://cdn.npmmirror.com/binaries/node');
 		});
+		it('NVM_NODEJS_ORG_MIRROR', () => {
+			assert.notOk(env.NVM_NODEJS_ORG_MIRROR);
+		});
+		it('N_NODE_MIRROR', () => {
+			assert.notOk(env.N_NODE_MIRROR);
+		});
 	} else {
 		it('NVM_NODEJS_ORG_MIRROR', () => {
 			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://cdn.npmmirror.com/binaries/node');
 		});
-
 		it('N_NODE_MIRROR', () => {
 			assert.strictEqual(env.N_NODE_MIRROR, 'https://cdn.npmmirror.com/binaries/node');
 		});
 
-		if (process.platform === 'darwin') {
-			it('HOMEBREW_BOTTLE_DOMAIN', () => {
-				assert.strictEqual(env.HOMEBREW_BOTTLE_DOMAIN, 'https://mirrors.aliyun.com/homebrew/homebrew-bottles');
-			});
-		}
+		it('NVMW_NODEJS_ORG_MIRROR', () => {
+			assert.notOk(env.NVMW_NODEJS_ORG_MIRROR);
+		});
+		it('NODIST_NODE_MIRROR', () => {
+			assert.notOk(env.NODIST_NODE_MIRROR);
+		});
 	}
 });
-describe('config', () => {
-	it('--disturl', async () => {
-		const opts = await config(['--disturl=https://nodejs.mock']);
-		const env = opts.env;
-		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://nodejs.mock');
-		assert.strictEqual(env.NODE_MIRROR, 'https://nodejs.mock');
-		if (process.platform === 'win32') {
-			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://nodejs.mock');
-			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://nodejs.mock');
-		} else {
-			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://nodejs.mock');
-			assert.strictEqual(env.N_NODE_MIRROR, 'https://nodejs.mock');
-		}
-	});
-	it('--bin-mirrors-prefix', async () => {
-		const opts = await config(['--bin-mirrors-prefix=https://mirror.mock']);
-		const env = opts.env;
-		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://mirror.mock/node');
-		assert.strictEqual(env.NODE_MIRROR, 'https://mirror.mock/node');
-		if (process.platform === 'win32') {
-			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://mirror.mock/node');
-			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://mirror.mock/node');
-		} else {
-			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://mirror.mock/node');
-			assert.strictEqual(env.N_NODE_MIRROR, 'https://mirror.mock/iojs');
-		}
-	});
-	it('proxy', async () => {
+describe('根据命令行参数改变环境变量', () => {
+	it('--bin-mirror-prefix=https://my.mirror.mock --disturl={my-mirror}/path/to/nodejs/', async () => {
 		const opts = await config([
-			'--https-proxy=https://proxy.https.mock',
-			'--http-proxy=https://proxy.http.mock',
+			'--my-mirror-prefix=https://my.mirror.mock',
+			'--disturl={my-mirror}/path/to/nodejs/',
 		]);
 		const env = opts.env;
-		assert.strictEqual(env.https_proxy, 'https://proxy.https.mock');
-		assert.strictEqual(env.http_proxy, 'https://proxy.http.mock');
+		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+		assert.strictEqual(env.NODE_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+		if (process.platform === 'win32') {
+			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+		} else {
+			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+			assert.strictEqual(env.N_NODE_MIRROR, 'https://my.mirror.mock/path/to/nodejs/');
+		}
 	});
-	it('--env-*', async () => {
-		const opts = await config([
-			'--env-mock-env=test.mok',
-		]);
+	it('--bin-mirror-prefix=https://my.mock', async () => {
+		const opts = await config(['--bin-mirror-prefix=https://my.mock']);
 		const env = opts.env;
-		assert.strictEqual(env.MOCK_ENV, 'test.mok');
+		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://my.mock/node');
+		assert.strictEqual(env.NODE_MIRROR, 'https://my.mock/node');
+		if (process.platform === 'win32') {
+			assert.strictEqual(env.NVMW_NODEJS_ORG_MIRROR, 'https://my.mock/node');
+			assert.strictEqual(env.NODIST_NODE_MIRROR, 'https://my.mock/node');
+		} else {
+			assert.strictEqual(env.NVM_NODEJS_ORG_MIRROR, 'https://my.mock/node');
+			assert.strictEqual(env.N_NODE_MIRROR, 'https://my.mock/iojs');
+		}
 	});
-	it('--*-mirror', async () => {
+	it('--disturl=https://nodejs.mock', async () => {
 		const opts = await config([
-			'--nodejs-org-mirror=https://nodejs.mock',
-			'--npm-mirror=https://npmjs.mock',
+			'--disturl=https://nodejs.mock',
 		]);
 		const env = opts.env;
 		assert.strictEqual(env.NODEJS_ORG_MIRROR, 'https://nodejs.mock');

@@ -30,6 +30,7 @@
   ],
   "license": "MIT",
   "main": "./index.js",
+  "type": "module",
   "name": "mirror-config-china",
   "nyc": {
     "reporter": [
