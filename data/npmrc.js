@@ -4,12 +4,12 @@ const npmrc = {
 
 	'disturl': '{bin-mirror}/node',
 
-	/* eslint no-template-curly-in-string: "off" */
 	'better-sqlite3-binary-host': '{bin-mirror}/better-sqlite3',
 	'canvas-binary-host-mirror': '{bin-mirror}/node-canvas-prebuilt/v{version}',
 	'canvas-prebuilt-binary-host-mirror': '{bin-mirror}/node-canvas-prebuilt/v{version}',
 	'chromedriver-cdnurl': '{bin-mirror}/chromedriver',
 	'couchbase-binary-host-mirror': '{bin-mirror}/couchbase/v{version}',
+	/* eslint no-template-curly-in-string: "off" */
 	'cypress-download-path-template': '{bin-mirror}/cypress/${version}/${platform}-${arch}/cypress.zip',
 	'debug-binary-host-mirror': '{bin-mirror}/node-inspector',
 	'electron-builder-binaries-mirror': '{bin-mirror}/electron-builder-binaries/',

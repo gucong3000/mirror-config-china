@@ -29,10 +29,10 @@ source ~/.bashrc && env
 
 - `--registry=https://registry.npmmirror.com`
   `https://registry.npmjs.org/`的镜像地址
-- `--disturl=https://cdn.npmmirror.com/binaries/node`
-  `https://nodejs.org/dist/`的镜像地址
 - `--bin-mirror-prefix=https://cdn.npmmirror.com/binaries`
-  二进制文件下载镜像站地址
+  二进制文件下载镜像站地址的前缀
+- `--disturl={bin-mirror}/node`
+  `https://nodejs.org/dist/`的镜像地址
 
 以上信息存入`.npmrc`文件
 
@@ -95,7 +95,7 @@ PATH 环境变量中加入`node_modules/.bin`这个路径，方便调用`mocha`�
 - [windows-build-tools](https://www.npmjs.com/package/windows-build-tools)
 - [@swc/core](https://www.npmjs.com/package/@swc/core)
 
-注：未能全部列出
+注：未能全部列出，详见[data/npmrc.js](./data/npmrc.js)
 
 ## 未尽功能
 
